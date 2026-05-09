@@ -1,12 +1,26 @@
 "use client";
+
 import { motion } from "framer-motion";
 
-export default function GradientOrb({ className = "", color = "purple", delay = 0 }) {
-  const colors = {
+type OrbColor = "purple" | "cyan" | "pink";
+
+type GradientOrbProps = {
+  className?: string;
+  color?: OrbColor;
+  delay?: number;
+};
+
+export default function GradientOrb({
+  className = "",
+  color = "purple",
+  delay = 0,
+}: GradientOrbProps) {
+  const colors: Record<OrbColor, string> = {
     purple: "rgba(124,92,255,0.35)",
     cyan: "rgba(34,211,238,0.25)",
     pink: "rgba(236,72,153,0.22)",
   };
+
   return (
     <motion.div
       className={`absolute rounded-full pointer-events-none ${className}`}

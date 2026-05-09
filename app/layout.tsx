@@ -18,7 +18,11 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="es" className={`${inter.variable} scroll-smooth`}>
       <body className="bg-kali-black text-white antialiased selection:bg-kali-accent/40 selection:text-white">
