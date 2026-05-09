@@ -75,9 +75,10 @@ export default function ContactForm() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="relative glass rounded-3xl p-8 md:p-12 overflow-hidden"
+          className="relative glass-strong rounded-3xl p-7 md:p-10 overflow-hidden border border-white/10 shadow-[0_20px_80px_-40px_rgba(0,0,0,0.85)]"
         >
-          <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_right,rgba(124,92,255,0.1),transparent_60%)]" />
+          <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_right,rgba(124,92,255,0.16),transparent_62%)]" />
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-kali-accent/40 to-transparent" />
 
           <AnimatePresence mode="wait">
             {status === "sent" ? (
@@ -106,7 +107,7 @@ export default function ContactForm() {
                 onSubmit={handleSubmit}
                 initial={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="relative grid grid-cols-1 md:grid-cols-2 gap-5"
+                className="relative grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4"
               >
                 <div>
                   <label className="form-label">Nombre completo</label>
@@ -158,41 +159,79 @@ export default function ContactForm() {
 
                 <div>
                   <label className="form-label">Servicio de interés</label>
-                  <select
-                    name="service"
-                    value={form.service}
-                    onChange={handleChange}
-                    required
-                    className="form-input appearance-none cursor-pointer"
-                  >
-                    <option value="" disabled>
-                      Selecciona una opción
-                    </option>
-                    {SERVICES.map((s) => (
-                      <option key={s} value={s} className="bg-kali-bg">
-                        {s}
+                  <div className="relative">
+                    <select
+                      name="service"
+                      value={form.service}
+                      onChange={handleChange}
+                      required
+                      className="form-input appearance-none cursor-pointer pr-11"
+                    >
+                      <option value="" disabled>
+                        Selecciona una opción
                       </option>
-                    ))}
-                  </select>
+                      {SERVICES.map((s) => (
+                        <option key={s} value={s} className="bg-kali-bg">
+                          {s}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-white/50">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M5.5 7.75L10 12.25L14.5 7.75"
+                          stroke="currentColor"
+                          strokeWidth="1.6"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
 
                 <div>
                   <label className="form-label">Presupuesto aproximado</label>
-                  <select
-                    name="budget"
-                    value={form.budget}
-                    onChange={handleChange}
-                    className="form-input appearance-none cursor-pointer"
-                  >
-                    <option value="" disabled>
-                      Selecciona un rango
-                    </option>
-                    {BUDGETS.map((b) => (
-                      <option key={b} value={b} className="bg-kali-bg">
-                        {b}
+                  <div className="relative">
+                    <select
+                      name="budget"
+                      value={form.budget}
+                      onChange={handleChange}
+                      className="form-input appearance-none cursor-pointer pr-11"
+                    >
+                      <option value="" disabled>
+                        Selecciona un rango
                       </option>
-                    ))}
-                  </select>
+                      {BUDGETS.map((b) => (
+                        <option key={b} value={b} className="bg-kali-bg">
+                          {b}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-white/50">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M5.5 7.75L10 12.25L14.5 7.75"
+                          stroke="currentColor"
+                          strokeWidth="1.6"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="md:col-span-2">
@@ -208,7 +247,7 @@ export default function ContactForm() {
                   />
                 </div>
 
-                <div className="md:col-span-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
+                <div className="md:col-span-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-1 border-t border-white/10 mt-2">
                   <p className="text-xs text-white/40">
                     Al enviar aceptas nuestro{" "}
                     <a
@@ -223,9 +262,10 @@ export default function ContactForm() {
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className="group relative inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-kali-accent to-kali-cyan text-white text-sm font-medium tracking-tight overflow-hidden transition disabled:opacity-70"
+                    className="group relative inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-kali-accent to-kali-cyan text-white text-sm font-medium tracking-tight overflow-hidden transition disabled:opacity-70 shadow-[0_16px_60px_-18px_rgba(124,92,255,0.75)] hover:shadow-[0_22px_80px_-22px_rgba(34,211,238,0.55)] hover:scale-[1.02] active:scale-[0.99]"
                   >
-                    <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition" />
+                    <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.22),transparent_55%)]" />
+                    <span className="absolute -inset-10 opacity-0 group-hover:opacity-100 transition duration-700 bg-[radial-gradient(circle_at_center,rgba(124,92,255,0.24),transparent_60%)] blur-2xl" />
                     {status === "sending" ? (
                       <>
                         <Loader2 className="w-4 h-4 animate-spin relative" />

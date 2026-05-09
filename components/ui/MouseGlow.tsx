@@ -5,12 +5,13 @@ import { motion } from "framer-motion";
 
 export default function MouseGlow() {
   const [pos, setPos] = useState({ x: 0, y: 0 });
-  const [enabled, setEnabled] = useState(false);
+  const [enabled] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(pointer: fine)").matches;
+  });
 
   useEffect(() => {
-    if (window.matchMedia("(pointer: fine)").matches) {
-      setEnabled(true);
-    }
+    if (!enabled) return;
 
     const handle = (e: MouseEvent) => {
       setPos({ x: e.clientX, y: e.clientY });
@@ -21,7 +22,7 @@ export default function MouseGlow() {
     return () => {
       window.removeEventListener("mousemove", handle);
     };
-  }, []);
+  }, [enabled]);
 
   if (!enabled) return null;
 

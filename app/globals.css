@@ -72,3 +72,80 @@ body {
 .animate-gradient-x {
   animation: gradient-x 8s ease infinite;
 }
+
+@layer components {
+  .form-label {
+    @apply block text-xs uppercase tracking-[0.22em] text-white/55 mb-2;
+  }
+
+  .form-input {
+    @apply w-full rounded-2xl px-4 py-3.5 text-sm text-white placeholder:text-white/30;
+    @apply bg-white/[0.03] border border-white/10;
+    @apply outline-none transition duration-300;
+    @apply hover:border-white/20 hover:bg-white/[0.045];
+    @apply disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:border-white/10 disabled:hover:bg-white/[0.03];
+  }
+
+  .form-input:focus {
+    border-color: rgba(124, 92, 255, 0.6);
+    box-shadow: 0 0 0 2px rgba(124, 92, 255, 0.18);
+  }
+
+  .form-input option {
+    color: white;
+    background: #05060a;
+  }
+
+  .legal-prose {
+    @apply text-white/60 text-[15px] leading-relaxed;
+  }
+
+  .legal-prose h2 {
+    @apply mt-9 mb-3 text-white text-lg md:text-xl font-semibold tracking-tight;
+    @apply rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3;
+    @apply shadow-[0_10px_40px_-24px_rgba(0,0,0,0.8)];
+  }
+
+  .legal-prose h2:first-child {
+    @apply mt-0;
+  }
+
+  .legal-prose p {
+    @apply my-3;
+  }
+
+  .legal-prose ul {
+    @apply my-4 space-y-2;
+    @apply rounded-2xl border border-white/10 bg-white/[0.02] px-5 py-4;
+  }
+
+  .legal-prose li {
+    @apply pl-4 relative;
+  }
+
+  .legal-prose li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #7c5cff, #22d3ee);
+    opacity: 0.9;
+  }
+
+  .legal-prose a {
+    @apply text-white/80 underline underline-offset-4 transition;
+    text-decoration-color: rgba(124, 92, 255, 0.45);
+  }
+
+  .legal-prose a:hover {
+    @apply text-white;
+    text-decoration-color: rgba(124, 92, 255, 0.9);
+  }
+
+  .legal-prose strong {
+    @apply text-white;
+  }
+}
