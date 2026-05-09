@@ -1,47 +1,121 @@
 "use client";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { Mail, MessageCircle } from "lucide-react";
+import { FaInstagram, FaFacebookF } from "react-icons/fa";
+import { WHATSAPP_URL } from "@/lib/constants";
 
-import { NAV_LINKS, INSTAGRAM_LINK } from "@/lib/constants";
+const LEGAL = [
+  { href: "/privacidad", label: "Privacidad" },
+  { href: "/terminos", label: "Términos" },
+  { href: "/cookies", label: "Cookies" },
+];
+
+const SOCIALS = [
+  {
+    href: "https://www.instagram.com/kalisystems.ai/",
+    icon: FaInstagram,
+    label: "Instagram",
+  },
+  {
+    href: "https://facebook.com/TUPAGINA",
+    icon: FaFacebookF,
+    label: "Facebook",
+  },
+  {
+    href: WHATSAPP_URL,
+    icon: MessageCircle,
+    label: "WhatsApp",
+  },
+  {
+    href: "mailto:contacto@kalisystems.mx",
+    icon: Mail,
+    label: "Correo",
+  },
+];
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-white/5 py-12 px-6">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+    <footer className="relative border-t border-white/5 pt-16 pb-10 px-6 overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(124,92,255,0.06),transparent_60%)] pointer-events-none" />
 
-        <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-kali-accent to-kali-cyan flex items-center justify-center">
-            <span className="text-xs font-bold">K</span>
+      <div className="relative max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+          {/* Brand */}
+          <div>
+            <div className="flex items-center gap-2.5 mb-4">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-kali-accent to-kali-cyan flex items-center justify-center">
+                <span className="text-sm font-bold">K</span>
+              </div>
+              <span className="text-base font-semibold tracking-tight text-white">
+                KALI Systems
+              </span>
+            </div>
+            <p className="text-sm text-white/50 max-w-xs leading-relaxed">
+              Automatización con inteligencia artificial para negocios que
+              quieren crecer sin límites.
+            </p>
           </div>
 
-          <span className="text-sm text-white/70">
-            KALI Systems · © {new Date().getFullYear()}
-          </span>
-        </div>
+          {/* Legal */}
+          <div>
+            <h4 className="text-xs uppercase tracking-[0.2em] text-white/40 mb-4">
+              Legal
+            </h4>
+            <ul className="space-y-2.5">
+              {LEGAL.map((l) => (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    className="text-sm text-white/65 hover:text-white transition"
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        <div className="flex items-center gap-7">
-          {NAV_LINKS.map((l) => (
+          {/* Contact / Socials */}
+          <div>
+            <h4 className="text-xs uppercase tracking-[0.2em] text-white/40 mb-4">
+              Contacto
+            </h4>
             <a
-              key={l.href}
-              href={l.href}
-              className="text-xs text-white/40 hover:text-white transition"
+              href="mailto:contacto@kalisystems.mx"
+              className="text-sm text-white/65 hover:text-white transition block mb-5"
             >
-              {l.label}
+              contacto@kalisystems.mx
             </a>
-          ))}
-
-          <a
-            href={INSTAGRAM_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs text-white/40 hover:text-white transition"
-          >
-            Instagram
-          </a>
+            <div className="flex items-center gap-2">
+              {SOCIALS.map((s) => {
+                const Icon = s.icon;
+                return (
+                  <motion.a
+                    key={s.label}
+                    href={s.href}
+                    aria-label={s.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ y: -2 }}
+                    className="w-9 h-9 rounded-full glass flex items-center justify-center text-white/60 hover:text-white hover:border-white/20 transition-all"
+                  >
+                    <Icon className="w-4 h-4" />
+                  </motion.a>
+                );
+              })}
+            </div>
+          </div>
         </div>
 
-        <p className="text-xs text-white/30">
-          Ingeniería con inteligencia.
-        </p>
-
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-white/40">
+            © {new Date().getFullYear()} KALI Systems. Todos los derechos reservados.
+          </p>
+          <p className="text-xs text-white/30 tracking-wide">
+            Engineered with intelligence.
+          </p>
+        </div>
       </div>
     </footer>
   );
