@@ -65,7 +65,7 @@ export default function PrivacidadPage() {
       <p>
         KALI Systems no vende información personal a terceros. La información solo
         podrá compartirse con plataformas tecnológicas necesarias para operar los
-        servicios contratados (por ejemplo, proveedores de mensajería, CRM,
+        servicios contratados (por ejemplo, proveedores de mensajería, herramientas de gestión de clientes,
         analíticas o pagos), bajo estrictos acuerdos de confidencialidad y
         únicamente en la medida necesaria para la prestación del servicio.
       </p>

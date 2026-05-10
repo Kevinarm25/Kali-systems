@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Mail, MessageCircle } from "lucide-react";
@@ -41,27 +42,29 @@ export default function Footer() {
 
       <div className="relative max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
-          {/* Brand */}
           <div>
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-kali-accent to-kali-cyan flex items-center justify-center">
-                <span className="text-sm font-bold">K</span>
-              </div>
+              <img
+                src="/logo-icon.png"
+                alt="KALI Systems"
+                className="w-12 h-12 object-contain"
+              />
+
               <span className="text-base font-semibold tracking-tight text-white">
                 KALI Systems
               </span>
             </div>
+
             <p className="text-sm text-white/50 max-w-xs leading-relaxed">
-              Automatización con inteligencia artificial para negocios que
-              quieren crecer sin límites.
+              IA respondiendo clientes y ordenando tu día a día — para negocios que quieren crecer sin ahogarse en mensajes.
             </p>
           </div>
 
-          {/* Legal */}
           <div>
             <h4 className="text-xs uppercase tracking-[0.2em] text-white/40 mb-4">
               Legal
             </h4>
+
             <ul className="space-y-2.5">
               {LEGAL.map((l) => (
                 <li key={l.href}>
@@ -76,20 +79,22 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact / Socials */}
           <div>
             <h4 className="text-xs uppercase tracking-[0.2em] text-white/40 mb-4">
               Contacto
             </h4>
+
             <a
               href="mailto:contacto@kalisystems.mx"
               className="text-sm text-white/65 hover:text-white transition block mb-5"
             >
               contacto@kalisystems.mx
             </a>
+
             <div className="flex items-center gap-2">
               {SOCIALS.map((s) => {
                 const Icon = s.icon;
+
                 return (
                   <motion.a
                     key={s.label}
@@ -110,10 +115,12 @@ export default function Footer() {
 
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-white/40">
-            © {new Date().getFullYear()} KALI Systems. Todos los derechos reservados.
+            © {new Date().getFullYear()} KALI Systems. Todos los derechos
+            reservados.
           </p>
+
           <p className="text-xs text-white/30 tracking-wide">
-            Engineered with intelligence.
+            Pensado con IA. Hecho para personas.
           </p>
         </div>
       </div>

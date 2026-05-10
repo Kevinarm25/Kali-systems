@@ -29,8 +29,8 @@ export default function TerminosPage() {
       <ul>
         <li>Automatización de WhatsApp, Instagram y Facebook.</li>
         <li>Sistemas inteligentes de atención al cliente.</li>
-        <li>Captura y calificación de leads.</li>
-        <li>Seguimiento automático y CRM integrado.</li>
+        <li>Captura y organización de nuevos contactos.</li>
+        <li>Seguimiento automático y clientes ordenados en un solo lugar.</li>
         <li>Implementación de flujos personalizados según el negocio.</li>
       </ul>
       <p>

@@ -2,13 +2,14 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, CheckCircle2, Loader2 } from "lucide-react";
+import PremiumSection from "@/components/ui/PremiumSection";
 
 const SERVICES = [
   "Automatización de WhatsApp",
   "Automatización Instagram / Facebook",
-  "CRM y seguimiento automático",
-  "Captura y calificación de leads",
-  "Sistema integral de IA",
+  "Clientes organizados y seguimiento",
+  "Más contactos con menos trabajo manual",
+  "Sistema integral con IA",
   "Otro",
 ];
 
@@ -47,36 +48,23 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contacto" className="relative py-32 px-6 overflow-hidden">
+    <PremiumSection id="contacto" className="py-32 px-6 overflow-hidden" glow="contact">
       <div className="absolute inset-0 grid-bg opacity-20 section-fade pointer-events-none" />
 
       <div className="relative max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-14"
-        >
+        <div className="text-center mb-14">
           <p className="text-xs uppercase tracking-[0.25em] text-kali-accent/80 mb-4">
-            Contacto directo
+            Hablamos
           </p>
           <h2 className="text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-gradient-accent">
-            Hablemos de tu negocio
+            Cuéntanos qué te gustaría mejorar
           </h2>
           <p className="mt-5 text-white/55 max-w-xl mx-auto">
-            Cuéntanos qué necesitas automatizar y diseñaremos una solución a la
-            medida de tu operación.
+            En unos minutos entendemos tu día a día y te decimos cómo podemos ayudarte — sin complicar el lenguaje.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="relative glass-strong rounded-3xl p-7 md:p-10 overflow-hidden border border-white/10 shadow-[0_20px_80px_-40px_rgba(0,0,0,0.85)]"
-        >
+        <div className="relative glass-strong rounded-3xl p-7 md:p-10 overflow-hidden border border-white/10 shadow-[0_20px_80px_-40px_rgba(0,0,0,0.85)] transition-shadow duration-700 hover:border-white/12 hover:shadow-[0_24px_90px_-36px_rgba(124,92,255,0.22)]">
           <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_right,rgba(124,92,255,0.16),transparent_62%)]" />
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-kali-accent/40 to-transparent" />
 
@@ -262,7 +250,7 @@ export default function ContactForm() {
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className="group relative inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-kali-accent to-kali-cyan text-white text-sm font-medium tracking-tight overflow-hidden transition disabled:opacity-70 shadow-[0_16px_60px_-18px_rgba(124,92,255,0.75)] hover:shadow-[0_22px_80px_-22px_rgba(34,211,238,0.55)] hover:scale-[1.02] active:scale-[0.99]"
+                    className="btn-premium-gradient group relative inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-kali-accent to-kali-cyan text-white text-sm font-medium tracking-tight overflow-hidden transition disabled:opacity-70 shadow-[0_16px_60px_-18px_rgba(124,92,255,0.75)] hover:shadow-[0_22px_80px_-22px_rgba(34,211,238,0.55)] z-[1]"
                   >
                     <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.22),transparent_55%)]" />
                     <span className="absolute -inset-10 opacity-0 group-hover:opacity-100 transition duration-700 bg-[radial-gradient(circle_at_center,rgba(124,92,255,0.24),transparent_60%)] blur-2xl" />
@@ -282,8 +270,8 @@ export default function ContactForm() {
               </motion.form>
             )}
           </AnimatePresence>
-        </motion.div>
+        </div>
       </div>
-    </section>
+    </PremiumSection>
   );
 }

@@ -32,13 +32,11 @@ export default function Navbar() {
           }`}
         >
           <a href="#" className="flex items-center gap-2.5 group">
-            <div className="relative w-8 h-8 rounded-lg bg-gradient-to-br from-kali-accent to-kali-cyan flex items-center justify-center overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/30 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-              <span className="text-sm font-bold text-white">K</span>
-            </div>
-            <span className="text-[15px] font-semibold tracking-tight">
-              KALI <span className="text-white/50 font-light">Systems</span>
-            </span>
+          <img
+  src="/logo-icon.png"
+  alt="KALI Systems"
+  className="w-14 h-14 object-contain"
+/>
           </a>
 
           <nav className="hidden md:flex items-center gap-8">
@@ -58,10 +56,12 @@ export default function Navbar() {
               href={WHATSAPP_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-full bg-white text-black hover:bg-white/90 transition-all duration-300 hover:scale-[1.02]"
+              className="btn-premium-light hidden md:inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-full bg-white text-black hover:bg-white/95 transition-colors duration-300 hover:scale-[1.02] z-[1]"
             >
-              Comenzar
-              <span className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="relative z-[1] inline-flex items-center gap-2">
+                Comenzar
+                <span className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
+              </span>
             </a>
             <button
               onClick={() => setOpen(!open)}
@@ -93,7 +93,7 @@ export default function Navbar() {
               href={WHATSAPP_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-center bg-white text-black py-2.5 rounded-full text-sm font-medium"
+              className="btn-premium-light text-center bg-white text-black py-2.5 rounded-full text-sm font-medium hover:bg-white transition-colors duration-300"
             >
               Comenzar
             </a>

@@ -50,7 +50,7 @@ export default function LegalLayout({
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="mb-8"
           >
-            <div className="relative glass-strong rounded-3xl border border-white/10 px-7 py-7 md:px-10 md:py-9 overflow-hidden">
+            <div className="legal-shell relative glass-strong rounded-3xl border px-7 py-7 md:px-10 md:py-9 overflow-hidden">
               <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_right,rgba(124,92,255,0.14),transparent_60%)]" />
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-kali-accent/40 to-transparent" />
               <p className="relative text-xs uppercase tracking-[0.25em] text-kali-accent/80 mb-3">
@@ -71,7 +71,7 @@ export default function LegalLayout({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15 }}
-            className="relative glass rounded-3xl p-7 md:p-10 overflow-hidden border border-white/10 shadow-[0_18px_80px_-44px_rgba(0,0,0,0.85)]"
+            className="legal-shell relative glass rounded-3xl p-7 md:p-10 overflow-hidden border shadow-[0_18px_80px_-44px_rgba(0,0,0,0.85)]"
           >
             <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_right,rgba(124,92,255,0.08),transparent_60%)]" />
             <div className="relative legal-prose">{children}</div>

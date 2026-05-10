@@ -22,14 +22,13 @@ export default function TrustBadges() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs text-white/60 mb-5">
             <Lock className="w-3.5 h-3.5 text-kali-cyan" />
-            Pagos 100% seguros
+            Pagos con tranquilidad
           </div>
           <h3 className="text-2xl md:text-3xl font-semibold tracking-tight text-white">
-            Procesamos pagos con los estándares más altos
+            Cuando pagas con nosotros, tu información va protegida
           </h3>
           <p className="mt-3 text-sm text-white/50 max-w-xl mx-auto">
-            Aceptamos tarjetas internacionales y procesamos los pagos a través
-            de plataformas certificadas.
+            Usamos procesadores reconocidos y buenas prácticas para que cada transacción se sienta segura y simple.
           </p>
         </motion.div>
 

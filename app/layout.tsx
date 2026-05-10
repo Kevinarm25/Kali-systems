@@ -10,7 +10,7 @@ const inter = Inter({
 export const metadata = {
   title: "KALI Systems — Automatización con IA para negocios modernos",
   description:
-    "Sistemas premium de automatización con IA. WhatsApp, Instagram, CRM, captación de leads y seguimiento inteligente para escalar tu negocio 24/7.",
+    "IA respondiendo clientes en WhatsApp e Instagram, seguimiento inteligente y negocio más ordenado — respuestas 24/7 sin perder el ritmo.",
   openGraph: {
     title: "KALI Systems",
     description: "Automatización con IA para negocios modernos",

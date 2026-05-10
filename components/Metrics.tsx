@@ -6,26 +6,26 @@ const METRICS = [
   {
     icon: Clock,
     value: "24/7",
-    label: "Atención automatizada",
-    desc: "Respuesta inmediata a cualquier hora.",
+    label: "Atención automática",
+    desc: "Respuesta al instante, a cualquier hora.",
   },
   {
     icon: Repeat,
     value: "100%",
-    label: "Seguimiento automático",
-    desc: "Ningún lead se queda sin respuesta.",
+    label: "Seguimiento cubierto",
+    desc: "Nadie se queda sin respuesta.",
   },
   {
     icon: Plug,
     value: "+5",
-    label: "Canales conectados",
-    desc: "WhatsApp, Instagram, Facebook, web y CRM.",
+    label: "Todo conectado",
+    desc: "WhatsApp, Instagram, Facebook y tu web — en una misma línea.",
   },
   {
     icon: TrendingDown,
     value: "-80%",
-    label: "Trabajo manual",
-    desc: "Menos tareas operativas para tu equipo.",
+    label: "Menos trabajo manual",
+    desc: "Tu equipo deja de hacer lo mismo una y otra vez.",
   },
 ];
 
@@ -46,7 +46,7 @@ export default function Metrics() {
             Resultados
           </p>
           <h2 className="text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-gradient-accent">
-            Métricas que importan
+            Señales claras de que va bien
           </h2>
         </motion.div>
 
