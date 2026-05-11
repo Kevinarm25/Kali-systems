@@ -42,7 +42,7 @@ export default function TrustBadges() {
           {PAYMENTS.map((p) => (
             <div
               key={p.name}
-              className="group relative px-6 py-4 rounded-2xl glass min-w-[130px] text-center hover:border-white/20 transition-all"
+              className="group relative px-6 py-4 rounded-2xl glass min-w-[130px] text-center hover:border-white/20 transition-colors duration-300"
             >
               <span className="text-base md:text-lg font-semibold tracking-wide text-white/80 group-hover:text-white transition">
                 {p.label}

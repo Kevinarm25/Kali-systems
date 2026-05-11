@@ -30,7 +30,7 @@ export default function Industries() {
           {industries.map((ind) => (
             <div key={ind.name} className="premium-card-group relative group">
               <div className="relative h-[220px] premium-card-shell glass rounded-2xl p-6 flex flex-col justify-between overflow-hidden">
-                <div className="absolute -top-20 -right-20 w-48 h-48 rounded-full bg-kali-accent/14 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="absolute -top-16 -right-16 hidden w-40 h-40 rounded-full bg-kali-accent/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 md:block" />
                 <div className="relative w-11 h-11 rounded-xl glass flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
                   <ind.icon className="w-5 h-5 text-white/80 group-hover:text-kali-cyan transition" />
                 </div>

@@ -64,7 +64,7 @@ export default function ContactForm() {
           </p>
         </div>
 
-        <div className="relative glass-strong rounded-3xl p-7 md:p-10 overflow-hidden border border-white/10 shadow-[0_20px_80px_-40px_rgba(0,0,0,0.85)] transition-shadow duration-700 hover:border-white/12 hover:shadow-[0_24px_90px_-36px_rgba(124,92,255,0.22)]">
+        <div className="relative glass-strong rounded-3xl p-7 md:p-10 overflow-hidden border border-white/10 shadow-[0_20px_80px_-40px_rgba(0,0,0,0.85)] transition-colors duration-300 hover:border-white/12">
           <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_right,rgba(124,92,255,0.16),transparent_62%)]" />
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-kali-accent/40 to-transparent" />
 
@@ -250,10 +250,10 @@ export default function ContactForm() {
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className="btn-premium-gradient group relative inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-kali-accent to-kali-cyan text-white text-sm font-medium tracking-tight overflow-hidden transition disabled:opacity-70 shadow-[0_16px_60px_-18px_rgba(124,92,255,0.75)] hover:shadow-[0_22px_80px_-22px_rgba(34,211,238,0.55)] z-[1]"
+                    className="btn-premium-gradient group relative inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-kali-accent to-kali-cyan text-white text-sm font-medium tracking-tight overflow-hidden transition disabled:opacity-70 shadow-[0_14px_42px_-22px_rgba(124,92,255,0.65)] z-[1]"
                   >
                     <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.22),transparent_55%)]" />
-                    <span className="absolute -inset-10 opacity-0 group-hover:opacity-100 transition duration-700 bg-[radial-gradient(circle_at_center,rgba(124,92,255,0.24),transparent_60%)] blur-2xl" />
+                    <span className="absolute -inset-8 hidden opacity-0 group-hover:opacity-100 transition duration-500 bg-[radial-gradient(circle_at_center,rgba(124,92,255,0.16),transparent_62%)] blur-xl md:block" />
                     {status === "sending" ? (
                       <>
                         <Loader2 className="w-4 h-4 animate-spin relative" />

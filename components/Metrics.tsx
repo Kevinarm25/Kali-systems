@@ -60,9 +60,9 @@ export default function Metrics() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="group relative glass rounded-2xl p-6 md:p-7 overflow-hidden hover:border-white/20 transition-all"
+                className="group relative glass rounded-2xl p-6 md:p-7 overflow-hidden hover:border-white/20 transition-colors duration-300"
               >
-                <div className="absolute -top-12 -right-12 w-32 h-32 bg-kali-accent/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute -top-10 -right-10 hidden w-28 h-28 bg-kali-accent/8 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 md:block" />
                 <div className="relative">
                   <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center mb-4">
                     <Icon className="w-5 h-5 text-kali-cyan" />

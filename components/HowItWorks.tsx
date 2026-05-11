@@ -45,7 +45,7 @@ export default function HowItWorks() {
                 className="premium-card-group group relative flex flex-col items-center text-center"
               >
                 <div className="relative mb-5">
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-kali-accent to-kali-cyan opacity-30 blur-xl group-hover:opacity-[0.55] transition-opacity duration-500" />
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-kali-accent to-kali-cyan opacity-20 blur-lg group-hover:opacity-[0.42] transition-opacity duration-300" />
                   <div className="relative w-[84px] h-[84px] rounded-2xl premium-card-shell glass-strong flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
                     <step.icon className="w-7 h-7 text-white relative z-[1]" />
                   </div>

@@ -30,7 +30,6 @@ export default function PremiumSection({
   children,
 }: PremiumSectionProps) {
   const reduceMotion = useReducedMotion();
-  const blurInitial = reduceMotion ? "blur(0px)" : "blur(7px)";
 
   return (
     <section id={id} className={`relative overflow-hidden ${className}`}>
@@ -48,11 +47,11 @@ export default function PremiumSection({
       />
       <motion.div
         className="relative z-[1]"
-        initial={{ opacity: 0, y: 32, filter: blurInitial }}
-        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.1 }}
         transition={{
-          duration: 0.9,
+          duration: 0.72,
           ease: [0.22, 1, 0.36, 1],
         }}
       >

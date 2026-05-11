@@ -1,5 +1,6 @@
 "use client";
-import { useEffect, useState } from "react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { NAV_LINKS, WHATSAPP_LINK } from "@/lib/constants";
@@ -7,11 +8,29 @@ import { NAV_LINKS, WHATSAPP_LINK } from "@/lib/constants";
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const scrolledRef = useRef(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    let frame: number | null = null;
+    const onScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = null;
+        const next = window.scrollY > 20;
+        if (next !== scrolledRef.current) {
+          scrolledRef.current = next;
+          setScrolled(next);
+        }
+      });
+    };
+
     window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    onScroll();
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, []);
 
   return (
@@ -19,24 +38,27 @@ export default function Navbar() {
       initial={{ y: -30, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 inset-x-0 z-50 transition-[padding] duration-500 ${
         scrolled ? "py-3" : "py-5"
       }`}
     >
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div
-          className={`flex items-center justify-between rounded-2xl px-5 md:px-6 py-3 transition-all duration-500 ${
+          className={`flex items-center justify-between rounded-2xl px-5 md:px-6 py-3 transition-colors duration-500 ${
             scrolled
               ? "glass-strong shadow-[0_8px_40px_-12px_rgba(0,0,0,0.6)]"
               : "bg-transparent border border-transparent"
           }`}
         >
           <a href="#" className="flex items-center gap-2.5 group">
-          <img
-  src="/logo-icon.png"
-  alt="KALI Systems"
-  className="w-14 h-14 object-contain"
-/>
+            <Image
+              src="/logo-icon.png"
+              alt="KALI Systems"
+              width={56}
+              height={56}
+              priority
+              className="w-14 h-14 object-contain"
+            />
           </a>
 
           <nav className="hidden md:flex items-center gap-8">

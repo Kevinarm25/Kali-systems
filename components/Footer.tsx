@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Mail, MessageCircle } from "lucide-react";
@@ -44,9 +45,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           <div>
             <div className="flex items-center gap-2.5 mb-4">
-              <img
+              <Image
                 src="/logo-icon.png"
                 alt="KALI Systems"
+                width={48}
+                height={48}
                 className="w-12 h-12 object-contain"
               />
 
@@ -103,7 +106,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ y: -2 }}
-                    className="w-9 h-9 rounded-full glass flex items-center justify-center text-white/60 hover:text-white hover:border-white/20 transition-all"
+                    className="w-9 h-9 rounded-full glass flex items-center justify-center text-white/60 hover:text-white hover:border-white/20 transition-colors duration-300"
                   >
                     <Icon className="w-4 h-4" />
                   </motion.a>
