@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Sparkles } from "lucide-react";
@@ -154,12 +155,12 @@ export default function Hero() {
             <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform relative z-[1]" />
           </a>
 
-          <a
-            href="#services"
+          <Link
+            href="/#services"
             className="btn-premium-ghost glass relative z-[1] inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-medium text-sm hover:bg-white/10 transition-colors duration-300"
           >
             Ver qué hacemos
-          </a>
+          </Link>
         </motion.div>
 
         <motion.div

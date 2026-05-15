@@ -2,7 +2,7 @@
 import { Check, ArrowRight, Sparkles } from "lucide-react";
 import { WHATSAPP_URL } from "@/lib/constants";
 
-const CONTACT_LINK = WHATSAPP_URL || "#contacto";
+const CONTACT_LINK = WHATSAPP_URL || "/#contacto";
 
 const PLANS = [
   {

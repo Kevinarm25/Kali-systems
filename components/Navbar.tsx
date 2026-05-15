@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -50,7 +51,7 @@ export default function Navbar() {
               : "bg-transparent border border-transparent"
           }`}
         >
-          <a href="#" className="flex items-center gap-2.5 group">
+          <Link href="/" className="flex items-center gap-2.5 group">
             <Image
               src="/logo-icon.png"
               alt="KALI Systems"
@@ -59,17 +60,17 @@ export default function Navbar() {
               priority
               className="w-14 h-14 object-contain"
             />
-          </a>
+          </Link>
 
           <nav className="hidden md:flex items-center gap-8">
             {NAV_LINKS.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="text-sm text-white/60 hover:text-white transition-colors duration-300"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -102,14 +103,14 @@ export default function Navbar() {
             className="md:hidden mt-2 glass-strong rounded-2xl p-5 flex flex-col gap-4"
           >
             {NAV_LINKS.map((l) => (
-              <a
+              <Link
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
                 className="text-white/70 hover:text-white transition"
               >
                 {l.label}
-              </a>
+              </Link>
             ))}
             <a
               href={WHATSAPP_LINK}
