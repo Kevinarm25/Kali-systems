@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Mail, MessageCircle } from "lucide-react";
 import { FaInstagram, FaFacebookF } from "react-icons/fa";
 import { WHATSAPP_URL } from "@/lib/constants";
+import PaymentMethods from "@/components/PaymentMethods";
 
 const LEGAL = [
   { href: "/privacidad", label: "Privacidad" },
@@ -42,7 +43,7 @@ export default function Footer() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(124,92,255,0.06),transparent_60%)] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-8">
           <div>
             <div className="flex items-center gap-2.5 mb-4">
               <Image
@@ -114,9 +115,11 @@ export default function Footer() {
               })}
             </div>
           </div>
+
+          <PaymentMethods />
         </div>
 
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-white/40">
             © {new Date().getFullYear()} KALI Systems. Todos los derechos
             reservados.

@@ -7,7 +7,6 @@ import Features from "@/components/Features";
 import Metrics from "@/components/Metrics";
 import Pricing from "@/components/Pricing";
 import ContactForm from "@/components/ContactForm";
-import TrustBadges from "@/components/TrustBadges";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import AmbientCursorGlow from "@/components/ui/AmbientCursorGlow";
@@ -25,7 +24,6 @@ export default function Home() {
       <Metrics />
       <Pricing />
       <ContactForm />
-      <TrustBadges />
       <Footer />
       <WhatsAppFloat />
     </main>
