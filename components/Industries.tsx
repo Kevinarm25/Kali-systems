@@ -33,7 +33,7 @@ export default function Industries() {
           {industries.map((ind) => (
             <div key={ind.name} className="premium-card-group relative group">
               <div className="relative min-h-[180px] sm:h-[200px] premium-card-shell glass rounded-2xl p-5 sm:p-6 flex flex-col justify-between overflow-hidden">
-                <div className="absolute -top-16 -right-16 hidden w-40 h-40 rounded-full bg-kali-accent/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 md:block" />
+                <div className="absolute -top-16 -right-16 hidden w-40 h-40 rounded-full bg-kali-accent/10 blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 md:block" />
                 <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl glass flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
                   <KaliIcon
                     icon={ind.icon}

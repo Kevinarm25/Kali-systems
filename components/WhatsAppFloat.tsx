@@ -1,9 +1,10 @@
 "use client";
 
+import { memo } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import { WHATSAPP_URL } from "@/lib/constants";
 
-export default function WhatsAppFloat() {
+function WhatsAppFloat() {
   return (
     <a
       href={WHATSAPP_URL}
@@ -11,14 +12,14 @@ export default function WhatsAppFloat() {
       rel="noopener noreferrer"
       aria-label="Contactar por WhatsApp"
       className="fixed bottom-5 right-5 md:bottom-7 md:right-7 z-50 group kali-float-enter gpu-layer"
-      style={{ animationDelay: "1.2s" }}
+      style={{ animationDelay: "0.8s" }}
     >
       <span
-        className="absolute inset-0 rounded-full bg-emerald-400/35 blur-xl opacity-50 group-hover:opacity-90 transition-opacity duration-300"
+        className="absolute inset-0 rounded-full bg-emerald-400/35 blur-lg opacity-50 group-hover:opacity-90 transition-opacity duration-300"
         aria-hidden
       />
       <span
-        className="absolute inset-0 hidden rounded-full bg-emerald-500/25 animate-ping md:block"
+        className="absolute inset-0 hidden rounded-full bg-emerald-500/20 kali-wa-pulse md:block"
         aria-hidden
       />
 
@@ -39,3 +40,5 @@ export default function WhatsAppFloat() {
     </a>
   );
 }
+
+export default memo(WhatsAppFloat);

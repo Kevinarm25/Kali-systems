@@ -13,6 +13,7 @@ import {
   Users,
 } from "@phosphor-icons/react";
 import KaliIcon from "@/components/ui/KaliIcon";
+import { ENTER_FAST, stagger } from "@/lib/motion";
 
 const SIGNALS: { icon: Icon; label: string }[] = [
   { icon: ShieldCheck, label: "Implementación guiada" },
@@ -39,8 +40,8 @@ export default function TrustSignals() {
               key={s.label}
               initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 8 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: reduceMotion ? 0 : i * 0.04 }}
+              viewport={{ once: true, margin: "0px 0px -72px 0px" }}
+              transition={{ ...ENTER_FAST, delay: reduceMotion ? 0 : stagger(i, 0.02) }}
               className="group inline-flex items-center gap-2 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-full border border-white/[0.08] bg-white/[0.02] text-xs sm:text-sm text-white/60 hover:text-white/85 hover:border-kali-accent/30 transition-colors duration-300"
             >
               <KaliIcon

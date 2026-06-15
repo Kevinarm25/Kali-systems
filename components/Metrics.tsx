@@ -4,6 +4,7 @@ import type { Icon } from "@phosphor-icons/react";
 import { Clock, Heart, SquaresFour, TrendUp } from "@phosphor-icons/react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import KaliIcon from "@/components/ui/KaliIcon";
+import { ENTER, stagger } from "@/lib/motion";
 
 const METRICS: {
   icon: Icon;
@@ -58,14 +59,14 @@ export default function Metrics() {
               key={metric.label}
               initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "0px 0px -72px 0px" }}
               transition={{
-                duration: 0.55,
-                delay: reduceMotion ? 0 : i * 0.08,
+                ...ENTER,
+                delay: reduceMotion ? 0 : stagger(i, 0.025),
               }}
               className="group relative glass rounded-2xl p-5 sm:p-6 md:p-7 overflow-hidden hover:border-white/20 transition-colors duration-300"
             >
-              <div className="absolute -top-10 -right-10 hidden w-28 h-28 bg-kali-accent/8 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 md:block" />
+              <div className="absolute -top-10 -right-10 hidden w-28 h-28 bg-kali-accent/8 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 md:block" />
               <div className="relative">
                 <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center mb-3 sm:mb-4 transition-transform duration-300 group-hover:scale-[1.03]">
                   <KaliIcon icon={metric.icon} size="md" className="text-kali-cyan" />

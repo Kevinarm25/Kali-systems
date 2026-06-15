@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { m, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "@phosphor-icons/react";
+import { ENTER_HERO, MOTION_EASE } from "@/lib/motion";
 import AnimatedGrid from "./ui/AnimatedGrid";
 import GradientOrb from "./ui/GradientOrb";
 
@@ -63,13 +64,13 @@ export default function Hero() {
 
       <div className="relative z-10 w-full max-w-5xl mx-auto px-5 sm:px-6 text-center">
         <m.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.4, ease: MOTION_EASE }}
           className="inline-flex items-center gap-3 sm:gap-4 mb-8 sm:mb-10"
         >
           <div className="relative">
-            <div className="absolute inset-0 rounded-2xl bg-kali-accent/25 blur-xl scale-110" />
+            <div className="absolute inset-0 rounded-2xl bg-kali-accent/25 blur-lg scale-110" />
             <Image
               src="/logo-icon.png"
               alt="KALI Systems"
@@ -91,18 +92,18 @@ export default function Hero() {
         </m.div>
 
         <m.h1
-          initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 24 }}
+          initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ ...ENTER_HERO, delay: reduceMotion ? 0 : 0.05, ease: MOTION_EASE }}
           className="text-[1.85rem] sm:text-4xl md:text-5xl lg:text-[3.5rem] font-semibold tracking-[-0.035em] leading-[1.1] text-gradient-accent px-1"
         >
           Hacemos crecer negocios con tecnología.
         </m.h1>
 
         <m.p
-          initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 16 }}
+          initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ ...ENTER_HERO, delay: reduceMotion ? 0 : 0.1, ease: MOTION_EASE }}
           className="mt-6 sm:mt-8 text-sm sm:text-base md:text-lg text-white/55 max-w-2xl mx-auto leading-relaxed"
         >
           Sitios web, inteligencia artificial, automatización, software y
@@ -111,9 +112,9 @@ export default function Hero() {
         </m.p>
 
         <m.div
-          initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 20 }}
+          initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.42 }}
+          transition={{ ...ENTER_HERO, delay: reduceMotion ? 0 : 0.15, ease: MOTION_EASE }}
           className="mt-9 sm:mt-11 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 w-full sm:w-auto max-w-md sm:max-w-none mx-auto"
         >
           <Link
@@ -134,9 +135,9 @@ export default function Hero() {
       </div>
 
       <m.div
-        initial={{ opacity: reduceMotion ? 1 : 0, y: 20 }}
+        initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 14 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.65, duration: 1 }}
+        transition={{ delay: reduceMotion ? 0 : 0.22, duration: 0.45, ease: MOTION_EASE }}
         className="relative z-10 mt-14 sm:mt-20 w-full max-w-3xl mx-auto px-5 sm:px-6"
       >
         <div className="relative rounded-2xl sm:rounded-3xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-md overflow-hidden shadow-[0_32px_80px_-40px_rgba(124,92,255,0.35)]">

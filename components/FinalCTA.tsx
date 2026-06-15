@@ -1,9 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { m, useReducedMotion } from "framer-motion";
+import Link from "next/link";
 import { ArrowUpRight } from "@phosphor-icons/react";
 import PremiumSection from "@/components/ui/PremiumSection";
+import { ENTER } from "@/lib/motion";
+import { VIEWPORT_ONCE } from "@/lib/viewport";
 
 export default function FinalCTA() {
   const reduceMotion = useReducedMotion();
@@ -11,10 +13,10 @@ export default function FinalCTA() {
   return (
     <PremiumSection className="section-pad px-5 sm:px-6" glow="dual">
       <m.div
-        initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 20 }}
+        initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 14 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        viewport={VIEWPORT_ONCE}
+        transition={ENTER}
         className="relative max-w-3xl mx-auto text-center"
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(124,92,255,0.1),transparent_70%)] pointer-events-none" />

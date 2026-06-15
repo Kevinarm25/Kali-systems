@@ -1,9 +1,12 @@
 import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Problems from "@/components/Problems";
 import Footer from "@/components/Footer";
 import DeferredClientShell from "@/components/DeferredClientShell";
+
+const Problems = dynamic(() => import("@/components/Problems"), {
+  loading: () => null,
+});
 
 const EcosystemConnected = dynamic(
   () => import("@/components/EcosystemConnected"),

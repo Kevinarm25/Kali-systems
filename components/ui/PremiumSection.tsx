@@ -2,6 +2,8 @@
 
 import { m, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
+import { ENTER, MOTION_EASE } from "@/lib/motion";
+import { VIEWPORT_ONCE } from "@/lib/viewport";
 
 const GLOW_BACKGROUND: Record<string, string> = {
   purple:
@@ -33,27 +35,17 @@ export default function PremiumSection({
 
   return (
     <section id={id} className={`relative overflow-hidden ${className}`}>
-      <m.div
+      <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
         style={{ background: GLOW_BACKGROUND[glow] }}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.08 }}
-        transition={{
-          duration: 1.15,
-          ease: [0.22, 1, 0.36, 1],
-        }}
       />
       <m.div
         className="relative z-[1]"
-        initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 24 }}
+        initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 16 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.1 }}
-        transition={{
-          duration: 0.72,
-          ease: [0.22, 1, 0.36, 1],
-        }}
+        viewport={VIEWPORT_ONCE}
+        transition={{ ...ENTER, ease: MOTION_EASE }}
       >
         {children}
       </m.div>

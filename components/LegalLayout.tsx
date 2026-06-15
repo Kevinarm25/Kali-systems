@@ -3,6 +3,7 @@
 import { m } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft } from "@phosphor-icons/react";
+import { ENTER, ENTER_FAST, ENTER_HERO, MOTION_EASE } from "@/lib/motion";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import GradientOrb from "./ui/GradientOrb";
@@ -33,7 +34,7 @@ export default function LegalLayout({
           <m.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ ...ENTER_FAST }}
           >
             <Link
               href="/"
@@ -47,7 +48,7 @@ export default function LegalLayout({
           <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ ...ENTER_HERO, ease: MOTION_EASE }}
             className="mb-8"
           >
             <div className="legal-shell relative glass-strong rounded-3xl border px-7 py-7 md:px-10 md:py-9 overflow-hidden">
@@ -70,7 +71,7 @@ export default function LegalLayout({
           <m.article
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.15 }}
+            transition={{ ...ENTER, delay: 0.06, ease: MOTION_EASE }}
             className="legal-shell relative glass rounded-3xl p-7 md:p-10 overflow-hidden border shadow-[0_18px_80px_-44px_rgba(0,0,0,0.85)]"
           >
             <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_right,rgba(124,92,255,0.08),transparent_60%)]" />

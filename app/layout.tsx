@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={`${inter.variable} scroll-smooth`}>
+    <html lang="es" className={inter.variable}>
       <body className="bg-kali-black text-white antialiased selection:bg-kali-accent/40 selection:text-white">
         <MotionProvider>{children}</MotionProvider>
       </body>

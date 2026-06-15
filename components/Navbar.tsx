@@ -1,11 +1,11 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import { List, X } from "@phosphor-icons/react";
 import { NAV_LINKS } from "@/lib/constants";
 
-export default function Navbar() {
+function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const scrolledRef = useRef(false);
@@ -35,13 +35,13 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 kali-nav-enter transition-[padding] duration-500 ${
+      className={`fixed top-0 inset-x-0 z-50 kali-nav-enter transition-[padding] duration-300 ${
         scrolled ? "py-3" : "py-5"
       }`}
     >
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div
-          className={`flex items-center justify-between rounded-2xl px-5 md:px-6 py-3 transition-colors duration-500 ${
+          className={`flex items-center justify-between rounded-2xl px-5 md:px-6 py-3 transition-colors duration-300 ${
             scrolled
               ? "glass-strong shadow-[0_8px_40px_-12px_rgba(0,0,0,0.6)]"
               : "bg-transparent border border-transparent"
@@ -124,3 +124,5 @@ export default function Navbar() {
     </header>
   );
 }
+
+export default memo(Navbar);

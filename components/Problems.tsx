@@ -2,6 +2,7 @@
 
 import { m, useReducedMotion } from "framer-motion";
 import { VIEWPORT_ONCE } from "@/lib/viewport";
+import { ENTER, stagger } from "@/lib/motion";
 
 const OUTCOMES = [
   {
@@ -53,7 +54,7 @@ export default function Problems() {
             initial={{ opacity: reduceMotion ? 1 : 0, x: reduceMotion ? 0 : -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={VIEWPORT_ONCE}
-            transition={{ duration: 0.7 }}
+            transition={{ ...ENTER, delay: reduceMotion ? 0 : 0 }}
             className="lg:col-span-4 lg:sticky lg:top-32"
           >
             <p className="text-[10px] sm:text-xs uppercase tracking-[0.28em] text-kali-accent/80 mb-4">
@@ -79,7 +80,7 @@ export default function Problems() {
                     initial={{ opacity: reduceMotion ? 1 : 0, x: reduceMotion ? 0 : 24 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={VIEWPORT_ONCE}
-                    transition={{ duration: 0.55, delay: reduceMotion ? 0 : i * 0.06 }}
+                    transition={{ ...ENTER, delay: reduceMotion ? 0 : stagger(i, 0.025) }}
                     className="group relative flex gap-5 sm:gap-8 py-7 sm:py-9 border-b border-white/[0.06] last:border-b-0"
                   >
                     <div

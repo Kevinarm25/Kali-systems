@@ -8,6 +8,7 @@ import {
   WHATSAPP_PROPOSAL,
 } from "@/lib/constants";
 import { VIEWPORT_ONCE } from "@/lib/viewport";
+import { ENTER, stagger } from "@/lib/motion";
 
 const PLANS = [
   {
@@ -96,16 +97,16 @@ const fadeUp = (reduceMotion, delay = 0) =>
   reduceMotion
     ? {}
     : {
-        initial: { opacity: 0, y: 24 },
+        initial: { opacity: 0, y: 16 },
         whileInView: { opacity: 1, y: 0 },
         viewport: VIEWPORT_ONCE,
-        transition: { duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] },
+        transition: { ...ENTER, delay, ease: [0.22, 1, 0.36, 1] },
       };
 
 function PlanCard({ plan, index, reduceMotion }) {
   return (
     <m.div
-      {...fadeUp(reduceMotion, index * 0.1)}
+      {...fadeUp(reduceMotion, stagger(index, 0.04))}
       className={`premium-card-group relative h-full ${
         plan.popular ? "lg:-mt-2 lg:mb-2" : ""
       }`}
@@ -238,7 +239,7 @@ export default function Pricing() {
         </div>
 
         <m.p
-          {...fadeUp(reduceMotion, 0.15)}
+          {...fadeUp(reduceMotion, 0.08)}
           className="mt-12 md:mt-14 text-center text-sm sm:text-base text-white/50 leading-relaxed max-w-2xl mx-auto"
         >
           Cada empresa es diferente. Diseñamos soluciones adaptadas a tus

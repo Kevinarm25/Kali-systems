@@ -14,7 +14,9 @@ import {
 import PremiumSection from "@/components/ui/PremiumSection";
 import SectionHeader from "@/components/ui/SectionHeader";
 import KaliIcon from "@/components/ui/KaliIcon";
+import { ENTER, ENTER_FAST } from "@/lib/motion";
 import { WHATSAPP_DEMO } from "@/lib/constants";
+import { VIEWPORT_ONCE } from "@/lib/viewport";
 
 const STEPS: {
   icon: Icon;
@@ -94,7 +96,7 @@ export default function DemoDashboard() {
           <m.div
             initial={{ opacity: reduceMotion ? 1 : 0, x: reduceMotion ? 0 : -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={VIEWPORT_ONCE}
             className="relative glass-strong rounded-2xl sm:rounded-3xl border border-white/10 overflow-hidden"
           >
             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-kali-cyan/50 to-transparent" />
@@ -123,7 +125,7 @@ export default function DemoDashboard() {
                         initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -8 }}
-                        transition={{ duration: 0.35 }}
+                        transition={{ ...ENTER_FAST }}
                         className="rounded-2xl border border-kali-accent/25 bg-kali-accent/10 p-4 sm:p-5"
                       >
                         <div className="flex items-start gap-3">
@@ -170,7 +172,7 @@ export default function DemoDashboard() {
           <m.div
             initial={{ opacity: reduceMotion ? 1 : 0, x: reduceMotion ? 0 : 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={VIEWPORT_ONCE}
             className="flex flex-col justify-center"
           >
             <ol className="space-y-2 sm:space-y-3">

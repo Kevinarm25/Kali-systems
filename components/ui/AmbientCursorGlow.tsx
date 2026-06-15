@@ -20,8 +20,8 @@ export default function AmbientCursorGlow() {
     if (!pointerFine) return;
 
     const initialize = () => {
-      const startX = window.innerWidth / 2 - 280;
-      const startY = window.innerHeight / 2 - 280;
+      const startX = window.innerWidth / 2 - 240;
+      const startY = window.innerHeight / 2 - 240;
       pointer.current = { x: startX, y: startY };
       current.current = { x: startX, y: startY };
       setEnabled(true);
@@ -29,40 +29,49 @@ export default function AmbientCursorGlow() {
 
     const hasIdleCallback = "requestIdleCallback" in window;
     const idleId = hasIdleCallback
-      ? window.requestIdleCallback(initialize, { timeout: 900 })
-      : window.setTimeout(initialize, 400);
+      ? window.requestIdleCallback(initialize, { timeout: 600 })
+      : window.setTimeout(initialize, 250);
 
     const tick = () => {
-      if (active.current) {
-        const dx = pointer.current.x - current.current.x;
-        const dy = pointer.current.y - current.current.y;
+      if (!active.current) {
+        frame.current = null;
+        return;
+      }
 
-        if (Math.abs(dx) > 0.4 || Math.abs(dy) > 0.4) {
-          current.current.x += dx * 0.08;
-          current.current.y += dy * 0.08;
+      const dx = pointer.current.x - current.current.x;
+      const dy = pointer.current.y - current.current.y;
 
-          if (glowRef.current) {
-            glowRef.current.style.transform = `translate3d(${current.current.x}px, ${current.current.y}px, 0)`;
-          }
+      if (Math.abs(dx) > 0.35 || Math.abs(dy) > 0.35) {
+        current.current.x += dx * 0.12;
+        current.current.y += dy * 0.12;
+
+        if (glowRef.current) {
+          glowRef.current.style.transform = `translate3d(${current.current.x}px, ${current.current.y}px, 0)`;
         }
       }
 
       frame.current = requestAnimationFrame(tick);
     };
 
+    const startLoop = () => {
+      if (frame.current === null) {
+        frame.current = requestAnimationFrame(tick);
+      }
+    };
+
     const handleMouseMove = (event: MouseEvent) => {
-      pointer.current.x = event.clientX - 280;
-      pointer.current.y = event.clientY - 280;
+      pointer.current.x = event.clientX - 240;
+      pointer.current.y = event.clientY - 240;
       active.current = true;
+      startLoop();
 
       if (idleTimer.current) clearTimeout(idleTimer.current);
       idleTimer.current = setTimeout(() => {
         active.current = false;
-      }, 140);
+      }, 120);
     };
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    frame.current = requestAnimationFrame(tick);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
@@ -82,10 +91,12 @@ export default function AmbientCursorGlow() {
     <div
       ref={glowRef}
       aria-hidden="true"
-      className="pointer-events-none fixed left-0 top-0 z-[0] hidden h-[560px] w-[560px] md:block mix-blend-screen gpu-layer"
-    >
-      <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(124,92,255,0.12)_0%,rgba(124,92,255,0.055)_28%,transparent_62%)] blur-2xl" />
-      <div className="absolute inset-20 rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.06)_0%,rgba(34,211,238,0.025)_32%,transparent_66%)] blur-xl" />
-    </div>
+      className="pointer-events-none fixed left-0 top-0 z-[0] hidden h-[480px] w-[480px] md:block mix-blend-screen gpu-layer"
+      style={{
+        background:
+          "radial-gradient(circle at center, rgba(124,92,255,0.11) 0%, rgba(124,92,255,0.04) 28%, rgba(34,211,238,0.03) 45%, transparent 68%)",
+        filter: "blur(40px)",
+      }}
+    />
   );
 }

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import { CheckCircle, CircleNotch, PaperPlaneTilt } from "@phosphor-icons/react";
 import PremiumSection from "@/components/ui/PremiumSection";
+import { ENTER_FAST } from "@/lib/motion";
 
 const SERVICES = [
   "KALI Start",
@@ -43,7 +44,7 @@ export default function ContactForm() {
     e.preventDefault();
     setStatus("sending");
     // Simulación visual mientras no hay backend
-    await new Promise((r) => setTimeout(r, 1100));
+    await new Promise((r) => setTimeout(r, 850));
     setStatus("sent");
   };
 
@@ -72,10 +73,10 @@ export default function ContactForm() {
             {status === "sent" ? (
               <m.div
                 key="success"
-                initial={{ opacity: 0, scale: 0.96 }}
+                initial={{ opacity: 0, scale: 0.97 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
+                transition={{ ...ENTER_FAST }}
                 className="relative flex flex-col items-center text-center py-12"
               >
                 <div className="w-16 h-16 rounded-full bg-gradient-to-br from-kali-accent to-kali-cyan flex items-center justify-center mb-6 shadow-[0_0_40px_rgba(124,92,255,0.4)]">
@@ -253,7 +254,7 @@ export default function ContactForm() {
                     className="btn-premium-gradient group relative inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-kali-accent to-kali-cyan text-white text-sm font-medium tracking-tight overflow-hidden transition disabled:opacity-70 shadow-[0_14px_42px_-22px_rgba(124,92,255,0.65)] z-[1]"
                   >
                     <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.22),transparent_55%)]" />
-                    <span className="absolute -inset-8 hidden opacity-0 group-hover:opacity-100 transition duration-500 bg-[radial-gradient(circle_at_center,rgba(124,92,255,0.16),transparent_62%)] blur-xl md:block" />
+                    <span className="absolute -inset-8 hidden opacity-0 group-hover:opacity-100 transition duration-300 bg-[radial-gradient(circle_at_center,rgba(124,92,255,0.16),transparent_62%)] blur-lg md:block" />
                     {status === "sending" ? (
                       <>
                         <CircleNotch size={16} weight="bold" className="animate-spin relative" />

@@ -15,6 +15,7 @@ import {
 } from "@phosphor-icons/react";
 import { FaWhatsapp } from "react-icons/fa";
 import { VIEWPORT_ONCE } from "@/lib/viewport";
+import { ENTER } from "@/lib/motion";
 import { ICON_SIZE, ecosystemIconClass } from "@/lib/iconStyles";
 import KaliIcon from "@/components/ui/KaliIcon";
 
@@ -71,9 +72,10 @@ export default function EcosystemConnected() {
 
       <div className="relative max-w-6xl mx-auto">
         <m.div
-          initial={{ opacity: reduceMotion ? 1 : 0, y: 20 }}
+          initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={VIEWPORT_ONCE}
+          transition={ENTER}
           className="text-center mb-10 sm:mb-14"
         >
           <p className="text-[10px] sm:text-xs uppercase tracking-[0.28em] text-kali-cyan/80 mb-4">
@@ -88,6 +90,7 @@ export default function EcosystemConnected() {
           initial={{ opacity: reduceMotion ? 1 : 0 }}
           whileInView={{ opacity: 1 }}
           viewport={VIEWPORT_ONCE}
+          transition={{ ...ENTER, delay: reduceMotion ? 0 : 0.06 }}
           className="relative mx-auto w-full max-w-[min(640px,100%)] aspect-square gpu-layer"
         >
           <svg viewBox="0 0 600 600" className="w-full h-full" aria-hidden>

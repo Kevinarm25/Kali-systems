@@ -10,6 +10,7 @@ import {
   Sparkle,
 } from "@phosphor-icons/react";
 import { VIEWPORT_ONCE } from "@/lib/viewport";
+import { ENTER, stagger } from "@/lib/motion";
 import KaliIcon from "@/components/ui/KaliIcon";
 
 const LEVELS: {
@@ -65,6 +66,7 @@ export default function Scalability() {
           initial={{ opacity: reduceMotion ? 1 : 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={VIEWPORT_ONCE}
+          transition={ENTER}
           className="text-center mb-12 sm:mb-16"
         >
           <p className="text-[10px] sm:text-xs uppercase tracking-[0.28em] text-kali-accent/80 mb-4">
@@ -89,7 +91,7 @@ export default function Scalability() {
                   initial={{ opacity: reduceMotion ? 1 : 0, x: reduceMotion ? 0 : 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={VIEWPORT_ONCE}
-                  transition={{ duration: 0.55, delay: reduceMotion ? 0 : i * 0.06 }}
+                  transition={{ ...ENTER, delay: reduceMotion ? 0 : stagger(i, 0.025) }}
                   className="relative flex items-center gap-5 sm:gap-6"
                 >
                   <div

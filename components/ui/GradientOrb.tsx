@@ -27,9 +27,9 @@ export default function GradientOrb({
     delayClass || (delay !== undefined ? DELAY_CLASS[delay] ?? "" : "");
   const reduceMotion = useReducedMotion();
   const colors: Record<OrbColor, string> = {
-    purple: "rgba(124,92,255,0.26)",
-    cyan: "rgba(34,211,238,0.18)",
-    pink: "rgba(236,72,153,0.16)",
+    purple: "rgba(124,92,255,0.3)",
+    cyan: "rgba(34,211,238,0.22)",
+    pink: "rgba(236,72,153,0.19)",
   };
 
   return (
@@ -39,7 +39,7 @@ export default function GradientOrb({
       } ${className}`}
       style={{
         background: `radial-gradient(circle, ${colors[color]} 0%, transparent 70%)`,
-        filter: "blur(44px)",
+        filter: "blur(32px)",
       }}
     />
   );

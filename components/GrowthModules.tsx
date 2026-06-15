@@ -12,6 +12,7 @@ import {
 import PremiumSection from "@/components/ui/PremiumSection";
 import SectionHeader from "@/components/ui/SectionHeader";
 import KaliIcon from "@/components/ui/KaliIcon";
+import { ENTER, stagger } from "@/lib/motion";
 
 const SERVICES: {
   icon: Icon;
@@ -64,8 +65,8 @@ export default function GrowthModules() {
               key={service.title}
               initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 14 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: reduceMotion ? 0 : i * 0.05 }}
+              viewport={{ once: true, margin: "0px 0px -72px 0px" }}
+              transition={{ ...ENTER, delay: reduceMotion ? 0 : stagger(i, 0.025) }}
               className={`premium-card-group ${
                 i === 4 ? "sm:col-span-2 lg:col-span-1 lg:col-start-2" : ""
               }`}

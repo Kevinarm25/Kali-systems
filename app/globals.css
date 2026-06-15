@@ -4,10 +4,21 @@
   color-scheme: dark;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
 html,
 body {
   background: #05060a;
   overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -24,15 +35,29 @@ body {
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.038);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-strong {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(24px);
+  background: rgba(255, 255, 255, 0.055);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 767px) {
+  .glass {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+
+  .glass-strong {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
 }
 
 .text-gradient {
@@ -168,6 +193,18 @@ body {
   }
 }
 
+@keyframes kali-wa-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(1.08);
+  }
+}
+
 @keyframes kali-nav-enter {
   from {
     opacity: 0;
@@ -228,7 +265,6 @@ body {
 
   .kali-orb-pulse {
     animation: kali-orb-pulse 14s ease-in-out infinite;
-    will-change: transform, opacity;
   }
 
   .kali-orb-delay-2 {
@@ -241,46 +277,45 @@ body {
 
   .kali-grid-glow {
     animation: kali-grid-glow 14s ease-in-out infinite;
-    will-change: transform, opacity;
   }
 
   .kali-ring-spin {
     animation: kali-ring-spin 90s linear infinite;
-    will-change: transform;
   }
 
   .kali-ring-spin-reverse {
     animation: kali-ring-spin-reverse 70s linear infinite;
-    will-change: transform;
   }
 
   .kali-flow-shimmer {
     animation: kali-flow-shimmer 1.6s ease-in-out infinite;
-    will-change: transform;
   }
 
   .kali-orbit-spin {
     animation: kali-orbit-spin 60s linear infinite;
     transform-origin: 300px 300px;
-    will-change: transform;
   }
 
   .kali-scroll-hint {
     animation: kali-scroll-hint 1.8s ease-in-out infinite;
-    will-change: transform;
   }
 
   .kali-nav-enter {
-    animation: kali-nav-enter 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: kali-nav-enter 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 
   .kali-float-enter {
-    animation: kali-float-enter 0.6s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+    animation: kali-float-enter 0.45s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  }
+
+  .kali-wa-pulse {
+    animation: kali-wa-pulse 2.4s ease-in-out infinite;
   }
 
   .perf-defer-section {
     content-visibility: auto;
     contain-intrinsic-size: auto 720px;
+    contain: layout style paint;
   }
 
   .gpu-layer {
@@ -297,7 +332,8 @@ body {
   .kali-flow-shimmer,
   .kali-orbit-spin,
   .kali-scroll-hint,
-  .kali-nav-enter {
+  .kali-nav-enter,
+  .kali-wa-pulse {
     animation: none !important;
     will-change: auto !important;
   }
@@ -452,8 +488,8 @@ body {
     @apply border border-white/[0.09] backdrop-blur-sm;
     transform: translateZ(0);
     transition:
-      transform 0.58s cubic-bezier(0.22, 1, 0.36, 1),
-      border-color 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.32s cubic-bezier(0.22, 1, 0.36, 1);
     box-shadow:
       0 0 0 1px rgba(255, 255, 255, 0.02) inset,
       0 18px 50px -32px rgba(0, 0, 0, 0.75),

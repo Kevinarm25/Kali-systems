@@ -21,7 +21,7 @@ export default function AnimatedGrid({ centerGlow = true }: AnimatedGridProps) {
           style={{
             background:
               "radial-gradient(circle, rgba(124,92,255,0.12) 0%, rgba(34,211,238,0.035) 35%, transparent 70%)",
-            filter: "blur(28px)",
+            filter: "blur(22px)",
           }}
         />
       )}

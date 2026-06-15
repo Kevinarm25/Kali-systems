@@ -11,6 +11,7 @@ import {
   UserCircle,
 } from "@phosphor-icons/react";
 import { VIEWPORT_ONCE } from "@/lib/viewport";
+import { ENTER, stagger } from "@/lib/motion";
 import { processIconClass, processIconClassSm } from "@/lib/iconStyles";
 import KaliIcon from "@/components/ui/KaliIcon";
 
@@ -64,6 +65,7 @@ export default function ProcessFlow() {
           initial={{ opacity: reduceMotion ? 1 : 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={VIEWPORT_ONCE}
+          transition={ENTER}
           className="text-center mb-12 sm:mb-16 max-w-2xl mx-auto"
         >
           <p className="text-[10px] sm:text-xs uppercase tracking-[0.28em] text-kali-accent/80 mb-4">
@@ -81,11 +83,11 @@ export default function ProcessFlow() {
                 initial={{ opacity: reduceMotion ? 1 : 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={VIEWPORT_ONCE}
-                transition={{ delay: i * 0.06 }}
+                transition={{ ...ENTER, delay: stagger(i, 0.025) }}
                 className="group/step flex flex-col items-center text-center flex-1 min-w-0"
               >
                 <div className="relative mb-4">
-                  <div className="absolute inset-0 rounded-2xl bg-kali-accent/15 blur-xl scale-125 opacity-50 transition-opacity duration-300 group-hover/step:opacity-70" />
+                  <div className="absolute inset-0 rounded-2xl bg-kali-accent/15 blur-lg scale-125 opacity-50 transition-opacity duration-300 group-hover/step:opacity-70" />
                   <div className="relative w-14 h-14 rounded-2xl border border-white/10 bg-white/[0.04] flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] transition-colors duration-300 group-hover/step:border-white/15 group-hover/step:bg-white/[0.06]">
                     <StepIcon icon={step.icon} />
                   </div>
@@ -113,7 +115,7 @@ export default function ProcessFlow() {
                 initial={{ opacity: reduceMotion ? 1 : 0, x: reduceMotion ? 0 : -16 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={VIEWPORT_ONCE}
-                transition={{ delay: i * 0.04 }}
+                transition={{ ...ENTER, delay: stagger(i, 0.02) }}
                 className="group/step relative flex gap-4 pb-8 last:pb-0"
               >
                 {!isLast && (
