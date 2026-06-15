@@ -14,14 +14,25 @@ const PLANS = [
   {
     id: "start",
     name: "KALI Start",
-    subtitle: "Ideal para comenzar a organizar y automatizar procesos.",
+    pricing: {
+      setup: "$6,000 MXN",
+      setupLabel: "Implementación Inicial",
+      monthly: "$3,500 MXN",
+      monthlyLabel: "Mensuales",
+    },
+    subtitle:
+      "Ideal para negocios que buscan una presencia digital profesional y comenzar a automatizar la atención a clientes.",
     features: [
-      "Automatización de redes",
-      "WhatsApp",
-      "Recordatorios",
-      "Seguimiento",
-      "Dashboard",
-      "Agendamiento",
+      "Landing Page profesional",
+      "Dominio y configuración inicial",
+      "Agenda online",
+      "Integración con WhatsApp",
+      "IA para atención inicial",
+      "CRM para seguimiento de prospectos",
+      "Dashboard básico",
+      "Formularios inteligentes",
+      "Soporte y ajustes menores",
+      "Actualizaciones básicas",
     ],
     cta: "Solicitar propuesta",
     ctaHref: WHATSAPP_PROPOSAL,
@@ -40,13 +51,27 @@ const PLANS = [
   {
     id: "growth",
     name: "KALI Growth",
-    subtitle: "Para empresas que buscan crecer con más control.",
+    pricing: {
+      setup: "$12,000 MXN",
+      setupLabel: "Implementación Inicial",
+      monthly: "$6,000 MXN",
+      monthlyLabel: "Mensuales",
+    },
+    subtitle:
+      "Diseñado para empresas que buscan crecer mediante automatización, seguimiento comercial y una presencia digital más completa.",
     includesPrevious: true,
     features: [
-      "IA conversacional",
-      "Integraciones",
-      "Seguimiento avanzado",
+      "Sitio web multipágina",
+      "Múltiples servicios o áreas",
+      "Automatizaciones avanzadas",
+      "IA conversacional mejorada",
+      "Embudos de seguimiento",
+      "SEO básico",
+      "Dashboard avanzado",
+      "Reportes personalizados",
+      "Integraciones adicionales",
       "Soporte prioritario",
+      "Optimización continua",
     ],
     cta: "Solicitar propuesta",
     ctaHref: WHATSAPP_PROPOSAL,
@@ -64,18 +89,28 @@ const PLANS = [
     },
   },
   {
-    id: "infinity",
-    name: "KALI Infinity",
-    subtitle: "Soluciones completamente personalizadas.",
+    id: "custom",
+    name: "KALI Custom",
+    pricing: {
+      custom: "Cotización Personalizada",
+    },
+    subtitle:
+      "Para empresas que requieren soluciones a medida, software privado o procesos especializados.",
     includesPrevious: false,
+    featuresLabel: "Algunos ejemplos:",
     features: [
-      "Software",
-      "Apps",
-      "IA personalizada",
       "Sistemas internos",
-      "Integraciones avanzadas",
-      "Soporte prioritario",
+      "Portales privados",
+      "Dashboards corporativos",
+      "Software personalizado",
+      "Aplicaciones web",
+      "Integraciones complejas",
+      "IA especializada",
+      "Automatización empresarial",
+      "Aplicaciones móviles",
     ],
+    footnote:
+      "Cada proyecto se diseña según las necesidades específicas de la empresa.",
     cta: "Hablar con un especialista",
     ctaHref: WHATSAPP_ECOSYSTEM,
     popular: false,
@@ -152,7 +187,29 @@ function PlanCard({ plan, index, reduceMotion }) {
           >
             {plan.name}
           </h3>
-          <p className="mt-2 text-sm text-white/55 leading-relaxed">
+
+          {plan.pricing?.custom ? (
+            <p className="mt-3 text-base font-semibold text-white/90">
+              {plan.pricing.custom}
+            </p>
+          ) : plan.pricing ? (
+            <div className="mt-4 space-y-2">
+              <div>
+                <p className="text-xl font-semibold text-white tabular-nums">
+                  {plan.pricing.setup}
+                </p>
+                <p className="text-xs text-white/45">{plan.pricing.setupLabel}</p>
+              </div>
+              <div>
+                <p className="text-xl font-semibold text-white tabular-nums">
+                  {plan.pricing.monthly}
+                </p>
+                <p className="text-xs text-white/45">{plan.pricing.monthlyLabel}</p>
+              </div>
+            </div>
+          ) : null}
+
+          <p className="mt-3 text-sm text-white/55 leading-relaxed">
             {plan.subtitle}
           </p>
 
@@ -160,7 +217,13 @@ function PlanCard({ plan, index, reduceMotion }) {
 
           {plan.includesPrevious && (
             <p className="text-xs font-medium uppercase tracking-[0.16em] text-white/45 mb-4">
-              Todo lo anterior, más:
+              Incluye todo lo de Start, más:
+            </p>
+          )}
+
+          {plan.featuresLabel && (
+            <p className="text-xs font-medium uppercase tracking-[0.16em] text-white/45 mb-4">
+              {plan.featuresLabel}
             </p>
           )}
 
@@ -181,6 +244,12 @@ function PlanCard({ plan, index, reduceMotion }) {
               </li>
             ))}
           </ul>
+
+          {plan.footnote && (
+            <p className="mt-4 text-sm text-white/50 leading-relaxed">
+              {plan.footnote}
+            </p>
+          )}
 
           <div className="mt-8">
             <a
