@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "@phosphor-icons/react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import GradientOrb from "./ui/GradientOrb";
@@ -30,7 +30,7 @@ export default function LegalLayout({
 
       <section className="relative z-10 pt-36 md:pt-40 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -39,12 +39,12 @@ export default function LegalLayout({
               href="/"
               className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white transition mb-8 group"
             >
-              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
+              <ArrowLeft size={16} weight="regular" className="group-hover:-translate-x-0.5 transition-transform" />
               Volver al inicio
             </Link>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -65,9 +65,9 @@ export default function LegalLayout({
                 </p>
               )}
             </div>
-          </motion.div>
+          </m.div>
 
-          <motion.article
+          <m.article
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15 }}
@@ -75,7 +75,7 @@ export default function LegalLayout({
           >
             <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_right,rgba(124,92,255,0.08),transparent_60%)]" />
             <div className="relative legal-prose">{children}</div>
-          </motion.article>
+          </m.article>
         </div>
       </section>
 

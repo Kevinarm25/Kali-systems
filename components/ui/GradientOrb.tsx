@@ -1,20 +1,30 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
 
 type OrbColor = "purple" | "cyan" | "pink";
 
 type GradientOrbProps = {
   className?: string;
   color?: OrbColor;
+  delayClass?: string;
+  /** @deprecated Use delayClass — kept for compatibility */
   delay?: number;
+};
+
+const DELAY_CLASS: Record<number, string> = {
+  2: "kali-orb-delay-2",
+  4: "kali-orb-delay-4",
 };
 
 export default function GradientOrb({
   className = "",
   color = "purple",
-  delay = 0,
+  delayClass = "",
+  delay,
 }: GradientOrbProps) {
+  const resolvedDelayClass =
+    delayClass || (delay !== undefined ? DELAY_CLASS[delay] ?? "" : "");
   const reduceMotion = useReducedMotion();
   const colors: Record<OrbColor, string> = {
     purple: "rgba(124,92,255,0.26)",
@@ -23,14 +33,14 @@ export default function GradientOrb({
   };
 
   return (
-    <motion.div
-      className={`absolute rounded-full pointer-events-none hidden md:block ${className}`}
+    <div
+      className={`absolute rounded-full pointer-events-none hidden md:block gpu-layer ${
+        reduceMotion ? "opacity-55" : `kali-orb-pulse ${resolvedDelayClass}`
+      } ${className}`}
       style={{
         background: `radial-gradient(circle, ${colors[color]} 0%, transparent 70%)`,
         filter: "blur(44px)",
       }}
-      animate={reduceMotion ? { opacity: 0.55 } : { scale: [1, 1.08, 1], opacity: [0.42, 0.68, 0.42] }}
-      transition={{ duration: 14, delay, repeat: Infinity, ease: "easeInOut" }}
     />
   );
 }

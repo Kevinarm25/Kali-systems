@@ -56,6 +56,10 @@ body {
   background-size: 56px 56px;
 }
 
+.section-pad {
+  @apply py-20 md:py-24 lg:py-28;
+}
+
 .section-fade {
   mask-image: linear-gradient(180deg, transparent, black 8%, black 92%, transparent);
 }
@@ -71,6 +75,248 @@ body {
 
 .animate-gradient-x {
   animation: gradient-x 8s ease infinite;
+}
+
+@keyframes kali-beam-pulse {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@keyframes kali-orb-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.42;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.68;
+  }
+}
+
+@keyframes kali-grid-glow {
+  0%,
+  100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translateX(-50%) scale(1.04);
+    opacity: 0.65;
+  }
+}
+
+@keyframes kali-ring-spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes kali-ring-spin-reverse {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+
+@keyframes kali-flow-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+@keyframes kali-orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes kali-scroll-hint {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+@keyframes kali-float-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.6) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes kali-nav-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes kali-orbit-pulse {
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
+
+@layer utilities {
+  .kali-beam-line {
+    animation: kali-beam-pulse 6s ease-in-out infinite;
+  }
+
+  .kali-beam-line-1 {
+    animation-duration: 6.8s;
+    animation-delay: 0.4s;
+  }
+
+  .kali-beam-line-2 {
+    animation-duration: 7.6s;
+    animation-delay: 0.8s;
+  }
+
+  .kali-beam-line-3 {
+    animation-duration: 8.4s;
+    animation-delay: 1.2s;
+  }
+
+  .kali-beam-line-4 {
+    animation-duration: 9.2s;
+    animation-delay: 1.6s;
+  }
+
+  .kali-beam-line-5 {
+    animation-duration: 10s;
+    animation-delay: 2s;
+  }
+
+  .kali-orb-pulse {
+    animation: kali-orb-pulse 14s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+
+  .kali-orb-delay-2 {
+    animation-delay: 2s;
+  }
+
+  .kali-orb-delay-4 {
+    animation-delay: 4s;
+  }
+
+  .kali-grid-glow {
+    animation: kali-grid-glow 14s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+
+  .kali-ring-spin {
+    animation: kali-ring-spin 90s linear infinite;
+    will-change: transform;
+  }
+
+  .kali-ring-spin-reverse {
+    animation: kali-ring-spin-reverse 70s linear infinite;
+    will-change: transform;
+  }
+
+  .kali-flow-shimmer {
+    animation: kali-flow-shimmer 1.6s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .kali-orbit-spin {
+    animation: kali-orbit-spin 60s linear infinite;
+    transform-origin: 300px 300px;
+    will-change: transform;
+  }
+
+  .kali-scroll-hint {
+    animation: kali-scroll-hint 1.8s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .kali-nav-enter {
+    animation: kali-nav-enter 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .kali-float-enter {
+    animation: kali-float-enter 0.6s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  }
+
+  .perf-defer-section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 720px;
+  }
+
+  .gpu-layer {
+    transform: translateZ(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kali-beam-line,
+  .kali-orb-pulse,
+  .kali-grid-glow,
+  .kali-ring-spin,
+  .kali-ring-spin-reverse,
+  .kali-flow-shimmer,
+  .kali-orbit-spin,
+  .kali-scroll-hint,
+  .kali-nav-enter {
+    animation: none !important;
+    will-change: auto !important;
+  }
+
+  .kali-float-enter {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+
+  .kali-beam-line {
+    opacity: 0.35;
+  }
+
+  .kali-orb-pulse,
+  .kali-grid-glow {
+    opacity: 0.55;
+    transform: none;
+  }
 }
 
 @layer components {

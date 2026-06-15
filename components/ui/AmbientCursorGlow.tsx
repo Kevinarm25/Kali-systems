@@ -10,6 +10,8 @@ export default function AmbientCursorGlow() {
   const pointer = useRef({ x: 0, y: 0 });
   const current = useRef({ x: 0, y: 0 });
   const frame = useRef<number | null>(null);
+  const active = useRef(false);
+  const idleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (reduceMotion) return;
@@ -27,15 +29,22 @@ export default function AmbientCursorGlow() {
 
     const hasIdleCallback = "requestIdleCallback" in window;
     const idleId = hasIdleCallback
-      ? window.requestIdleCallback(initialize, { timeout: 700 })
-      : window.setTimeout(initialize, 250);
+      ? window.requestIdleCallback(initialize, { timeout: 900 })
+      : window.setTimeout(initialize, 400);
 
     const tick = () => {
-      current.current.x += (pointer.current.x - current.current.x) * 0.08;
-      current.current.y += (pointer.current.y - current.current.y) * 0.08;
+      if (active.current) {
+        const dx = pointer.current.x - current.current.x;
+        const dy = pointer.current.y - current.current.y;
 
-      if (glowRef.current) {
-        glowRef.current.style.transform = `translate3d(${current.current.x}px, ${current.current.y}px, 0)`;
+        if (Math.abs(dx) > 0.4 || Math.abs(dy) > 0.4) {
+          current.current.x += dx * 0.08;
+          current.current.y += dy * 0.08;
+
+          if (glowRef.current) {
+            glowRef.current.style.transform = `translate3d(${current.current.x}px, ${current.current.y}px, 0)`;
+          }
+        }
       }
 
       frame.current = requestAnimationFrame(tick);
@@ -44,6 +53,12 @@ export default function AmbientCursorGlow() {
     const handleMouseMove = (event: MouseEvent) => {
       pointer.current.x = event.clientX - 280;
       pointer.current.y = event.clientY - 280;
+      active.current = true;
+
+      if (idleTimer.current) clearTimeout(idleTimer.current);
+      idleTimer.current = setTimeout(() => {
+        active.current = false;
+      }, 140);
     };
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
@@ -52,6 +67,7 @@ export default function AmbientCursorGlow() {
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       if (frame.current) cancelAnimationFrame(frame.current);
+      if (idleTimer.current) clearTimeout(idleTimer.current);
       if (hasIdleCallback) {
         window.cancelIdleCallback(idleId);
       } else {
@@ -66,7 +82,7 @@ export default function AmbientCursorGlow() {
     <div
       ref={glowRef}
       aria-hidden="true"
-      className="pointer-events-none fixed left-0 top-0 z-[0] hidden h-[560px] w-[560px] md:block mix-blend-screen will-change-transform"
+      className="pointer-events-none fixed left-0 top-0 z-[0] hidden h-[560px] w-[560px] md:block mix-blend-screen gpu-layer"
     >
       <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(124,92,255,0.12)_0%,rgba(124,92,255,0.055)_28%,transparent_62%)] blur-2xl" />
       <div className="absolute inset-20 rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.06)_0%,rgba(34,211,238,0.025)_32%,transparent_66%)] blur-xl" />

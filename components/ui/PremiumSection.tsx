@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 
 const GLOW_BACKGROUND: Record<string, string> = {
@@ -33,7 +33,7 @@ export default function PremiumSection({
 
   return (
     <section id={id} className={`relative overflow-hidden ${className}`}>
-      <motion.div
+      <m.div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
         style={{ background: GLOW_BACKGROUND[glow] }}
@@ -45,7 +45,7 @@ export default function PremiumSection({
           ease: [0.22, 1, 0.36, 1],
         }}
       />
-      <motion.div
+      <m.div
         className="relative z-[1]"
         initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 24 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -56,7 +56,7 @@ export default function PremiumSection({
         }}
       >
         {children}
-      </motion.div>
+      </m.div>
     </section>
   );
 }

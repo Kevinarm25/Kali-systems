@@ -1,31 +1,36 @@
+import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import HowItWorks from "@/components/HowItWorks";
-import Industries from "@/components/Industries";
-import Features from "@/components/Features";
-import Metrics from "@/components/Metrics";
-import Pricing from "@/components/Pricing";
-import ContactForm from "@/components/ContactForm";
+import Problems from "@/components/Problems";
 import Footer from "@/components/Footer";
-import WhatsAppFloat from "@/components/WhatsAppFloat";
-import AmbientCursorGlow from "@/components/ui/AmbientCursorGlow";
+import DeferredClientShell from "@/components/DeferredClientShell";
+
+const EcosystemConnected = dynamic(
+  () => import("@/components/EcosystemConnected"),
+  { loading: () => null }
+);
+const ProcessFlow = dynamic(() => import("@/components/ProcessFlow"), {
+  loading: () => null,
+});
+const Scalability = dynamic(() => import("@/components/Scalability"), {
+  loading: () => null,
+});
+const Pricing = dynamic(() => import("@/components/Pricing"), {
+  loading: () => null,
+});
 
 export default function Home() {
   return (
     <main className="relative">
-      <AmbientCursorGlow />
+      <DeferredClientShell />
       <Navbar />
       <Hero />
-      <Services />
-      <HowItWorks />
-      <Industries />
-      <Features />
-      <Metrics />
+      <Problems />
+      <EcosystemConnected />
+      <ProcessFlow />
+      <Scalability />
       <Pricing />
-      <ContactForm />
       <Footer />
-      <WhatsAppFloat />
     </main>
   );
 }

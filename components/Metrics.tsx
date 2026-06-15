@@ -1,88 +1,89 @@
 "use client";
-import { motion } from "framer-motion";
-import { Clock, Repeat, Plug, TrendingDown } from "lucide-react";
+import { m, useReducedMotion } from "framer-motion";
+import type { Icon } from "@phosphor-icons/react";
+import { Clock, Heart, SquaresFour, TrendUp } from "@phosphor-icons/react";
+import SectionHeader from "@/components/ui/SectionHeader";
+import KaliIcon from "@/components/ui/KaliIcon";
 
-const METRICS = [
+const METRICS: {
+  icon: Icon;
+  value: string;
+  label: string;
+  desc: string;
+}[] = [
   {
     icon: Clock,
     value: "24/7",
-    label: "Atención automática",
-    desc: "Respuesta al instante, a cualquier hora.",
+    label: "Presencia constante",
+    desc: "Tu negocio sigue atendiendo cuando tú descansas.",
   },
   {
-    icon: Repeat,
+    icon: Heart,
     value: "100%",
-    label: "Seguimiento cubierto",
-    desc: "Nadie se queda sin respuesta.",
+    label: "Clientes cuidados",
+    desc: "Nadie se queda sin respuesta ni sin seguimiento.",
   },
   {
-    icon: Plug,
-    value: "+5",
-    label: "Todo conectado",
-    desc: "WhatsApp, Instagram, Facebook y tu web — en una misma línea.",
+    icon: SquaresFour,
+    value: "1",
+    label: "Ecosistema unificado",
+    desc: "Canales, agenda y contactos en la misma línea.",
   },
   {
-    icon: TrendingDown,
-    value: "-80%",
-    label: "Menos trabajo manual",
-    desc: "Tu equipo deja de hacer lo mismo una y otra vez.",
+    icon: TrendUp,
+    value: "+",
+    label: "Espacio para crecer",
+    desc: "Infraestructura que escala con tu ambición.",
   },
 ];
 
 export default function Metrics() {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <section className="relative py-28 px-6 overflow-hidden">
+    <section className="relative section-pad px-5 sm:px-6 overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(124,92,255,0.06),transparent_70%)] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-14"
-        >
-          <p className="text-xs uppercase tracking-[0.25em] text-kali-accent/80 mb-4">
-            Resultados
-          </p>
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-gradient-accent">
-            Señales claras de que va bien
-          </h2>
-        </motion.div>
+        <SectionHeader
+          label="Impacto"
+          title="Confianza que se nota desde el primer contacto"
+          align="center"
+          className="max-w-3xl mx-auto"
+        />
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {METRICS.map((m, i) => {
-            const Icon = m.icon;
-            return (
-              <motion.div
-                key={m.label}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="group relative glass rounded-2xl p-6 md:p-7 overflow-hidden hover:border-white/20 transition-colors duration-300"
-              >
-                <div className="absolute -top-10 -right-10 hidden w-28 h-28 bg-kali-accent/8 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 md:block" />
-                <div className="relative">
-                  <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center mb-4">
-                    <Icon className="w-5 h-5 text-kali-cyan" />
-                  </div>
-                  <div className="text-3xl md:text-4xl font-semibold tracking-[-0.03em] text-gradient-accent mb-1.5">
-                    {m.value}
-                  </div>
-                  <div className="text-sm font-medium text-white mb-1">
-                    {m.label}
-                  </div>
-                  <div className="text-xs text-white/45 leading-relaxed">
-                    {m.desc}
-                  </div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
+          {METRICS.map((metric, i) => (
+            <m.div
+              key={metric.label}
+              initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.55,
+                delay: reduceMotion ? 0 : i * 0.08,
+              }}
+              className="group relative glass rounded-2xl p-5 sm:p-6 md:p-7 overflow-hidden hover:border-white/20 transition-colors duration-300"
+            >
+              <div className="absolute -top-10 -right-10 hidden w-28 h-28 bg-kali-accent/8 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 md:block" />
+              <div className="relative">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center mb-3 sm:mb-4 transition-transform duration-300 group-hover:scale-[1.03]">
+                  <KaliIcon icon={metric.icon} size="md" className="text-kali-cyan" />
                 </div>
-              </motion.div>
-            );
-          })}
+                <div className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[-0.03em] text-gradient-accent mb-1">
+                  {metric.value}
+                </div>
+                <div className="text-xs sm:text-sm font-medium text-white mb-1">
+                  {metric.label}
+                </div>
+                <div className="text-[11px] sm:text-xs text-white/45 leading-relaxed">
+                  {metric.desc}
+                </div>
+              </div>
+            </m.div>
+          ))}
         </div>
       </div>
     </section>
   );
 }
-

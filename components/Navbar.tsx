@@ -2,9 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import { NAV_LINKS, WHATSAPP_LINK } from "@/lib/constants";
+import { List, X } from "@phosphor-icons/react";
+import { NAV_LINKS } from "@/lib/constants";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -25,7 +24,7 @@ export default function Navbar() {
       });
     };
 
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
     return () => {
@@ -35,11 +34,8 @@ export default function Navbar() {
   }, []);
 
   return (
-    <motion.header
-      initial={{ y: -30, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 inset-x-0 z-50 transition-[padding] duration-500 ${
+    <header
+      className={`fixed top-0 inset-x-0 z-50 kali-nav-enter transition-[padding] duration-500 ${
         scrolled ? "py-3" : "py-5"
       }`}
     >
@@ -58,8 +54,17 @@ export default function Navbar() {
               width={56}
               height={56}
               priority
+              sizes="56px"
               className="w-14 h-14 object-contain"
             />
+            <span className="hidden sm:flex flex-col leading-none">
+              <span className="text-sm font-bold tracking-[0.14em] text-white">
+                KALI
+              </span>
+              <span className="text-[9px] font-medium tracking-[0.28em] text-white/40 mt-0.5">
+                SYSTEMS
+              </span>
+            </span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">
@@ -75,33 +80,27 @@ export default function Navbar() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <a
-              href={WHATSAPP_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contacto"
               className="btn-premium-light hidden md:inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-full bg-white text-black hover:bg-white/95 transition-colors duration-300 hover:scale-[1.02] z-[1]"
             >
               <span className="relative z-[1] inline-flex items-center gap-2">
-                Comenzar
+                Agendar una llamada
                 <span className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
               </span>
-            </a>
+            </Link>
             <button
               onClick={() => setOpen(!open)}
               className="md:hidden w-9 h-9 rounded-lg glass flex items-center justify-center"
               aria-label="Menú"
             >
-              {open ? <X size={18} /> : <Menu size={18} />}
+              {open ? <X size={18} weight="regular" /> : <List size={18} weight="regular" />}
             </button>
           </div>
         </div>
 
         {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="md:hidden mt-2 glass-strong rounded-2xl p-5 flex flex-col gap-4"
-          >
+          <div className="md:hidden mt-2 glass-strong rounded-2xl p-5 flex flex-col gap-4 animate-[kali-nav-enter_0.35s_cubic-bezier(0.22,1,0.36,1)_forwards]">
             {NAV_LINKS.map((l) => (
               <Link
                 key={l.href}
@@ -112,17 +111,16 @@ export default function Navbar() {
                 {l.label}
               </Link>
             ))}
-            <a
-              href={WHATSAPP_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contacto"
+              onClick={() => setOpen(false)}
               className="btn-premium-light text-center bg-white text-black py-2.5 rounded-full text-sm font-medium hover:bg-white transition-colors duration-300"
             >
-              Comenzar
-            </a>
-          </motion.div>
+              Agendar una llamada
+            </Link>
+          </div>
         )}
       </div>
-    </motion.header>
+    </header>
   );
 }

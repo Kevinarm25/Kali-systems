@@ -1,15 +1,15 @@
 "use client";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Send, CheckCircle2, Loader2 } from "lucide-react";
+import { m, AnimatePresence } from "framer-motion";
+import { CheckCircle, CircleNotch, PaperPlaneTilt } from "@phosphor-icons/react";
 import PremiumSection from "@/components/ui/PremiumSection";
 
 const SERVICES = [
-  "Automatización de WhatsApp",
-  "Automatización Instagram / Facebook",
-  "Clientes organizados y seguimiento",
-  "Más contactos con menos trabajo manual",
-  "Sistema integral con IA",
+  "KALI Start",
+  "KALI Growth",
+  "KALI Infinity",
+  "Sitio web",
+  "Software o app a medida",
   "Otro",
 ];
 
@@ -48,19 +48,19 @@ export default function ContactForm() {
   };
 
   return (
-    <PremiumSection id="contacto" className="py-32 px-6 overflow-hidden" glow="contact">
+    <PremiumSection id="contacto" className="section-pad px-5 sm:px-6 overflow-hidden" glow="contact">
       <div className="absolute inset-0 grid-bg opacity-20 section-fade pointer-events-none" />
 
       <div className="relative max-w-4xl mx-auto">
         <div className="text-center mb-14">
           <p className="text-xs uppercase tracking-[0.25em] text-kali-accent/80 mb-4">
-            Hablamos
+            Contacto
           </p>
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-gradient-accent">
-            Cuéntanos qué te gustaría mejorar
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] leading-[1.08] text-gradient-accent">
+            Cuéntanos sobre tu negocio
           </h2>
-          <p className="mt-5 text-white/55 max-w-xl mx-auto">
-            En unos minutos entendemos tu día a día y te decimos cómo podemos ayudarte — sin complicar el lenguaje.
+          <p className="mt-4 sm:mt-5 text-white/55 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+            Te respondemos pronto con una propuesta adaptada a lo que necesitas.
           </p>
         </div>
 
@@ -70,7 +70,7 @@ export default function ContactForm() {
 
           <AnimatePresence mode="wait">
             {status === "sent" ? (
-              <motion.div
+              <m.div
                 key="success"
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -79,7 +79,7 @@ export default function ContactForm() {
                 className="relative flex flex-col items-center text-center py-12"
               >
                 <div className="w-16 h-16 rounded-full bg-gradient-to-br from-kali-accent to-kali-cyan flex items-center justify-center mb-6 shadow-[0_0_40px_rgba(124,92,255,0.4)]">
-                  <CheckCircle2 className="w-8 h-8 text-white" />
+                  <CheckCircle size={32} weight="regular" className="text-white" />
                 </div>
                 <h3 className="text-2xl font-semibold tracking-tight text-white mb-3">
                   Solicitud recibida
@@ -88,9 +88,9 @@ export default function ContactForm() {
                   Nos pondremos en contacto contigo pronto. Gracias por confiar
                   en KALI Systems.
                 </p>
-              </motion.div>
+              </m.div>
             ) : (
-              <motion.form
+              <m.form
                 key="form"
                 onSubmit={handleSubmit}
                 initial={{ opacity: 1 }}
@@ -256,18 +256,18 @@ export default function ContactForm() {
                     <span className="absolute -inset-8 hidden opacity-0 group-hover:opacity-100 transition duration-500 bg-[radial-gradient(circle_at_center,rgba(124,92,255,0.16),transparent_62%)] blur-xl md:block" />
                     {status === "sending" ? (
                       <>
-                        <Loader2 className="w-4 h-4 animate-spin relative" />
+                        <CircleNotch size={16} weight="bold" className="animate-spin relative" />
                         <span className="relative">Enviando...</span>
                       </>
                     ) : (
                       <>
-                        <span className="relative">Enviar solicitud</span>
-                        <Send className="w-4 h-4 relative group-hover:translate-x-0.5 transition-transform" />
+                        <span className="relative">Enviar mensaje</span>
+                        <PaperPlaneTilt size={16} weight="regular" className="relative group-hover:translate-x-0.5 transition-transform" />
                       </>
                     )}
                   </button>
                 </div>
-              </motion.form>
+              </m.form>
             )}
           </AnimatePresence>
         </div>

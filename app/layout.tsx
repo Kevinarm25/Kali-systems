@@ -1,4 +1,5 @@
 import { Inter } from "next/font/google";
+import MotionProvider from "@/components/MotionProvider";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,12 +9,12 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "KALI Systems — Automatización con IA para negocios modernos",
+  title: "KALI Systems — Hacemos crecer negocios con tecnología",
   description:
-    "IA respondiendo clientes en WhatsApp e Instagram, seguimiento inteligente y negocio más ordenado — respuestas 24/7 sin perder el ritmo.",
+    "Sitios web, inteligencia artificial, automatización, software y herramientas diseñadas para ayudarte a vender más, ahorrar tiempo y mantener tu negocio organizado.",
   openGraph: {
     title: "KALI Systems",
-    description: "Automatización con IA para negocios modernos",
+    description: "Hacemos crecer negocios con tecnología",
     type: "website",
   },
 };
@@ -26,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${inter.variable} scroll-smooth`}>
       <body className="bg-kali-black text-white antialiased selection:bg-kali-accent/40 selection:text-white">
-        {children}
+        <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
   );
