@@ -52,7 +52,7 @@ const PLANS = [
     id: "growth",
     name: "KALI Growth",
     pricing: {
-      setup: "$12,000 MXN",
+      setup: "$10,000 MXN",
       setupLabel: "Implementación Inicial",
       monthly: "$6,000 MXN",
       monthlyLabel: "Mensuales",
@@ -115,15 +115,18 @@ const PLANS = [
     ctaHref: WHATSAPP_ECOSYSTEM,
     popular: false,
     exclusive: true,
+    badge: "A medida",
     theme: {
-      border: "rgba(255, 255, 255, 0.22)",
-      titleColor: "#FFFFFF",
-      dotFrom: "#7C5CFF",
+      border: "rgba(168, 85, 247, 0.38)",
+      titleColor: "#E9D5FF",
+      dotFrom: "#A855F7",
       dotTo: "#22D3EE",
       buttonBg:
-        "linear-gradient(90deg, rgba(124,92,255,0.82), rgba(34,211,238,0.72))",
+        "linear-gradient(95deg, rgba(168,85,247,0.95) 0%, rgba(124,92,255,0.92) 45%, rgba(34,211,238,0.88) 100%)",
       buttonText: "#ffffff",
-      glow: "rgba(124, 92, 255, 0.14)",
+      glow: "rgba(168, 85, 247, 0.28)",
+      ambient:
+        "radial-gradient(ellipse 90% 70% at 0% 0%, rgba(168,85,247,0.18), transparent 55%), radial-gradient(ellipse 80% 60% at 100% 100%, rgba(34,211,238,0.14), transparent 50%), radial-gradient(ellipse 60% 50% at 50% 50%, rgba(124,92,255,0.08), transparent 60%)",
     },
   },
 ];
@@ -147,34 +150,60 @@ function PlanCard({ plan, index, reduceMotion }) {
       }`}
     >
       <div
-        className={`group relative h-full rounded-3xl border bg-white/[0.025] overflow-hidden premium-card-shell transition-colors duration-300 ${
-          plan.exclusive ? "ring-1 ring-white/10" : ""
+        className={`group relative h-full rounded-3xl border overflow-hidden premium-card-shell transition-colors duration-300 ${
+          plan.exclusive
+            ? "ring-1 ring-violet-400/25 bg-gradient-to-br from-violet-500/[0.09] via-kali-accent/[0.05] to-cyan-500/[0.08]"
+            : "bg-white/[0.025]"
         }`}
         style={{
           borderColor: plan.theme.border,
           boxShadow: plan.popular
             ? "0 1px 0 rgba(255,255,255,0.06) inset, 0 28px 64px -36px rgba(124,92,255,0.35), 0 20px 56px -44px rgba(0,0,0,0.9)"
             : plan.exclusive
-              ? "0 1px 0 rgba(255,255,255,0.08) inset, 0 32px 72px -40px rgba(124,92,255,0.25), 0 20px 56px -44px rgba(0,0,0,0.9)"
+              ? "0 1px 0 rgba(255,255,255,0.1) inset, 0 32px 72px -36px rgba(168,85,247,0.35), 0 24px 64px -40px rgba(34,211,238,0.2), 0 20px 56px -44px rgba(0,0,0,0.9)"
               : "0 1px 0 rgba(255,255,255,0.04) inset, 0 20px 56px -44px rgba(0,0,0,0.9)",
         }}
       >
+        {plan.theme.ambient && (
+          <div
+            className="absolute inset-0 opacity-70 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+            style={{ background: plan.theme.ambient }}
+          />
+        )}
         <div
-          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+          className={`absolute inset-0 pointer-events-none transition-opacity duration-500 ${
+            plan.exclusive ? "opacity-40 group-hover:opacity-70" : "opacity-0 group-hover:opacity-100"
+          }`}
           style={{
             background: `radial-gradient(circle at top right, ${plan.theme.glow}, transparent 58%)`,
           }}
         />
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+        <div
+          className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent to-transparent ${
+            plan.exclusive
+              ? "via-violet-400/50"
+              : "via-white/20"
+          }`}
+        />
 
         {plan.exclusive && (
-          <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-kali-accent/0 via-kali-accent/70 to-kali-cyan/70" />
+          <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-violet-500/0 via-violet-400/80 via-kali-accent/90 to-cyan-400/80" />
         )}
 
         {plan.badge && (
           <div className="absolute top-6 right-6 z-10">
-            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-kali-accent/15 border border-kali-accent/25 text-[10px] uppercase tracking-[0.2em] font-semibold text-white">
-              <Sparkle size={12} weight="fill" className="text-kali-accent" />
+            <div
+              className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.2em] font-semibold text-white ${
+                plan.exclusive
+                  ? "bg-gradient-to-r from-violet-500/20 via-kali-accent/20 to-cyan-500/20 border border-violet-400/30"
+                  : "bg-kali-accent/15 border border-kali-accent/25"
+              }`}
+            >
+              <Sparkle
+                size={12}
+                weight="fill"
+                className={plan.exclusive ? "text-cyan-300" : "text-kali-accent"}
+              />
               {plan.badge}
             </div>
           </div>
@@ -182,14 +211,16 @@ function PlanCard({ plan, index, reduceMotion }) {
 
         <div className="relative p-8 md:p-9 flex flex-col h-full">
           <h3
-            className="text-2xl font-semibold tracking-[-0.02em]"
-            style={{ color: plan.theme.titleColor }}
+            className={`text-2xl font-semibold tracking-[-0.02em] ${
+              plan.exclusive ? "text-gradient-accent" : ""
+            }`}
+            style={plan.exclusive ? undefined : { color: plan.theme.titleColor }}
           >
             {plan.name}
           </h3>
 
           {plan.pricing?.custom ? (
-            <p className="mt-3 text-base font-semibold text-white/90">
+            <p className="mt-3 text-base font-semibold text-gradient-accent">
               {plan.pricing.custom}
             </p>
           ) : plan.pricing ? (
