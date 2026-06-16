@@ -7,12 +7,24 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5.5rem;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html,
 body {
   background: #05060a;
-  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+/* Espacio para WhatsApp flotante + safe area iPhone */
+.has-fab-shell {
+  padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+@media (min-width: 768px) {
+  .has-fab-shell {
+    padding-bottom: calc(6.5rem + env(safe-area-inset-bottom, 0px));
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -58,6 +70,12 @@ body {
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
   }
+
+  .glass-mobile-solid {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.07);
+  }
 }
 
 .text-gradient {
@@ -72,6 +90,19 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: #ffffff;
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .text-gradient-accent {
+    color: transparent;
+  }
+}
+
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation;
 }
 
 .grid-bg {
@@ -383,20 +414,6 @@ body {
     transition: opacity 0.35s ease, left 0.01s linear;
   }
 
-  .btn-premium-light:hover:not(:disabled) {
-    box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.75) inset,
-      0 14px 36px -12px rgba(124, 92, 255, 0.32),
-      0 10px 28px -12px rgba(34, 211, 238, 0.16);
-    transform: translateY(-2px);
-  }
-
-  .btn-premium-light:hover:not(:disabled)::before {
-    opacity: 1;
-    left: 100%;
-    transition: opacity 0.2s ease, left 0.72s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
   .btn-premium-light:active:not(:disabled) {
     transform: translateY(0);
   }
@@ -425,17 +442,6 @@ body {
     border-radius: inherit;
   }
 
-  .btn-premium-ghost:hover:not(:disabled) {
-    box-shadow:
-      0 0 0 1px rgba(124, 92, 255, 0.32) inset,
-      0 16px 40px -12px rgba(124, 92, 255, 0.32),
-      0 14px 36px -14px rgba(34, 211, 238, 0.14);
-  }
-
-  .btn-premium-ghost:hover:not(:disabled)::before {
-    opacity: 0.85;
-  }
-
   /* Gradient CTA shimmer (hero / contact submit) */
   .btn-premium-gradient {
     @apply relative overflow-hidden transition-transform duration-300;
@@ -462,19 +468,6 @@ body {
     border-radius: inherit;
   }
 
-  .btn-premium-gradient:hover:not(:disabled)::after {
-    opacity: 1;
-    left: 140%;
-    transition: opacity 0.2s ease, left 1.05s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .btn-premium-gradient:hover:not(:disabled) {
-    box-shadow:
-      0 16px 44px -16px rgba(124, 92, 255, 0.45),
-      0 12px 34px -14px rgba(34, 211, 238, 0.22);
-    transform: translateY(-3px);
-  }
-
   .btn-premium-gradient:active:not(:disabled) {
     transform: translateY(-1px);
   }
@@ -494,17 +487,6 @@ body {
       0 0 0 1px rgba(255, 255, 255, 0.02) inset,
       0 18px 50px -32px rgba(0, 0, 0, 0.75),
       0 24px 64px -40px rgba(124, 92, 255, 0);
-  }
-
-  .premium-card-group:hover .premium-card-shell,
-  .premium-card-group:focus-within .premium-card-shell {
-    transform: translateY(-5px) scale(1.01) perspective(900px) rotateX(2.4deg)
-      rotateY(-2deg);
-    border-color: rgba(124, 92, 255, 0.42);
-    box-shadow:
-      0 0 0 1px rgba(124, 92, 255, 0.18) inset,
-      0 18px 44px -22px rgba(124, 92, 255, 0.24),
-      0 18px 48px -26px rgba(34, 211, 238, 0.08);
   }
 
   /* Legal surfaces — muy sobrias */
@@ -545,7 +527,7 @@ body {
   }
 
   .form-input {
-    @apply w-full rounded-2xl px-4 py-3.5 text-sm text-white placeholder:text-white/30;
+    @apply w-full rounded-2xl px-4 py-3.5 text-base sm:text-sm text-white placeholder:text-white/30;
     @apply bg-white/[0.03] border border-white/10;
     @apply outline-none transition duration-300;
     @apply hover:border-white/20 hover:bg-white/[0.045];
@@ -619,5 +601,72 @@ body {
 
   .legal-prose strong {
     @apply text-white;
+  }
+}
+
+/* Hover solo en puntero fino — evita estados pegados en touch */
+@media (hover: hover) and (pointer: fine) {
+  .btn-premium-light:hover:not(:disabled) {
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.75) inset,
+      0 14px 36px -12px rgba(124, 92, 255, 0.32),
+      0 10px 28px -12px rgba(34, 211, 238, 0.16);
+    transform: translateY(-2px);
+  }
+
+  .btn-premium-light:hover:not(:disabled)::before {
+    opacity: 1;
+    left: 100%;
+    transition: opacity 0.2s ease, left 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .btn-premium-ghost:hover:not(:disabled) {
+    box-shadow:
+      0 0 0 1px rgba(124, 92, 255, 0.32) inset,
+      0 16px 40px -12px rgba(124, 92, 255, 0.32),
+      0 14px 36px -14px rgba(34, 211, 238, 0.14);
+  }
+
+  .btn-premium-ghost:hover:not(:disabled)::before {
+    opacity: 0.85;
+  }
+
+  .btn-premium-gradient:hover:not(:disabled)::after {
+    opacity: 1;
+    left: 140%;
+    transition: opacity 0.2s ease, left 1.05s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .btn-premium-gradient:hover:not(:disabled) {
+    box-shadow:
+      0 16px 44px -16px rgba(124, 92, 255, 0.45),
+      0 12px 34px -14px rgba(34, 211, 238, 0.22);
+    transform: translateY(-3px);
+  }
+
+  .premium-card-group:hover .premium-card-shell,
+  .premium-card-group:focus-within .premium-card-shell {
+    transform: translateY(-5px) scale(1.01) perspective(900px) rotateX(2.4deg)
+      rotateY(-2deg);
+    border-color: rgba(124, 92, 255, 0.42);
+    box-shadow:
+      0 0 0 1px rgba(124, 92, 255, 0.18) inset,
+      0 18px 44px -22px rgba(124, 92, 255, 0.24),
+      0 18px 48px -26px rgba(34, 211, 238, 0.08);
+  }
+}
+
+/* Feedback táctil en móvil */
+@media (hover: none), (pointer: coarse) {
+  .btn-premium-light:active:not(:disabled),
+  .btn-premium-ghost:active:not(:disabled),
+  .btn-premium-gradient:active:not(:disabled) {
+    transform: scale(0.98);
+    opacity: 0.92;
+  }
+
+  .premium-card-group:active .premium-card-shell {
+    transform: scale(0.995);
+    border-color: rgba(124, 92, 255, 0.28);
   }
 }

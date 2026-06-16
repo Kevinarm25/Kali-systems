@@ -119,7 +119,7 @@ export default function Hero() {
         >
           <Link
             href="/contacto"
-            className="btn-premium-light group relative z-[1] inline-flex items-center justify-center gap-2 bg-white text-black px-7 py-3.5 rounded-full font-medium text-sm hover:scale-[1.02] transition-transform duration-300"
+            className="btn-premium-light group relative z-[1] inline-flex items-center justify-center gap-2 min-h-[48px] bg-white text-black px-7 py-3.5 rounded-full font-medium text-sm active:scale-[0.98] md:hover:scale-[1.02] transition-transform duration-300 touch-target w-full sm:w-auto"
           >
             Agendar una llamada
             <ArrowUpRight size={16} weight="regular" className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform relative z-[1]" />
@@ -127,7 +127,7 @@ export default function Hero() {
 
           <Link
             href="/#problemas"
-            className="btn-premium-ghost glass relative z-[1] inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full font-medium text-sm hover:bg-white/10 transition-colors duration-300"
+            className="btn-premium-ghost glass relative z-[1] inline-flex items-center justify-center gap-2 min-h-[48px] px-7 py-3.5 rounded-full font-medium text-sm active:bg-white/10 md:hover:bg-white/10 transition-colors duration-300 touch-target w-full sm:w-auto"
           >
             Conocer soluciones
           </Link>
@@ -140,7 +140,7 @@ export default function Hero() {
         transition={{ delay: reduceMotion ? 0 : 0.22, duration: 0.45, ease: MOTION_EASE }}
         className="relative z-10 mt-14 sm:mt-20 w-full max-w-3xl mx-auto px-5 sm:px-6"
       >
-        <div className="relative rounded-2xl sm:rounded-3xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-md overflow-hidden shadow-[0_32px_80px_-40px_rgba(124,92,255,0.35)]">
+        <div className="relative rounded-2xl sm:rounded-3xl border border-white/[0.08] bg-white/[0.04] md:bg-white/[0.02] md:backdrop-blur-md overflow-hidden shadow-[0_32px_80px_-40px_rgba(124,92,255,0.35)]">
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-kali-accent/50 to-transparent" />
           <div className="px-4 sm:px-6 py-3 border-b border-white/[0.06] flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-400/80 animate-pulse" />

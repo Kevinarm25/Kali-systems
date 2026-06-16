@@ -236,12 +236,12 @@ export default function ContactForm() {
                   />
                 </div>
 
-                <div className="md:col-span-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-1 border-t border-white/10 mt-2">
+                <div className="md:col-span-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-1 border-t border-white/10 mt-2 pb-2">
                   <p className="text-xs text-white/40">
                     Al enviar aceptas nuestro{" "}
                     <a
                       href="/privacidad"
-                      className="text-white/70 underline decoration-kali-accent/40 underline-offset-4 hover:decoration-kali-accent"
+                      className="inline-flex items-center min-h-[44px] text-white/70 underline decoration-kali-accent/40 underline-offset-4 active:text-white active:decoration-kali-accent md:hover:decoration-kali-accent"
                     >
                       Aviso de Privacidad
                     </a>
@@ -251,7 +251,7 @@ export default function ContactForm() {
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className="btn-premium-gradient group relative inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-kali-accent to-kali-cyan text-white text-sm font-medium tracking-tight overflow-hidden transition disabled:opacity-70 shadow-[0_14px_42px_-22px_rgba(124,92,255,0.65)] z-[1]"
+                    className="btn-premium-gradient group relative inline-flex items-center justify-center gap-2 min-h-[48px] px-7 py-3.5 rounded-full bg-gradient-to-r from-kali-accent to-kali-cyan text-white text-sm font-medium tracking-tight overflow-hidden transition disabled:opacity-70 shadow-[0_14px_42px_-22px_rgba(124,92,255,0.65)] z-[1] w-full sm:w-auto touch-target"
                   >
                     <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.22),transparent_55%)]" />
                     <span className="absolute -inset-8 hidden opacity-0 group-hover:opacity-100 transition duration-300 bg-[radial-gradient(circle_at_center,rgba(124,92,255,0.16),transparent_62%)] blur-lg md:block" />

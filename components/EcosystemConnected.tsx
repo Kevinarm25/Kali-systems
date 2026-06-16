@@ -22,6 +22,7 @@ import KaliIcon from "@/components/ui/KaliIcon";
 type OrbitNode = {
   icon: Icon;
   label: string;
+  shortLabel?: string;
   angle: number;
   brand?: boolean;
 };
@@ -29,11 +30,21 @@ type OrbitNode = {
 const NODES: OrbitNode[] = [
   { icon: Browser, label: "Sitios Web", angle: 0 },
   { icon: Browser, label: "WhatsApp", angle: 40, brand: true },
-  { icon: Robot, label: "Inteligencia Artificial", angle: 80 },
+  {
+    icon: Robot,
+    label: "Inteligencia Artificial",
+    shortLabel: "IA",
+    angle: 80,
+  },
   { icon: ChartLineUp, label: "Dashboards", angle: 120 },
   { icon: SquaresFour, label: "Software", angle: 160 },
   { icon: DeviceMobile, label: "Apps", angle: 200 },
-  { icon: ArrowsClockwise, label: "Automatización", angle: 240 },
+  {
+    icon: ArrowsClockwise,
+    label: "Automatización",
+    shortLabel: "Automatización",
+    angle: 240,
+  },
   { icon: Megaphone, label: "Marketing", angle: 280 },
   { icon: Target, label: "Seguimiento", angle: 320 },
 ];
@@ -52,6 +63,22 @@ function polar(angleDeg: number, radius: number) {
   };
 }
 
+function NodeIcon({ node }: { node: OrbitNode }) {
+  return (
+    <div className="w-11 h-11 rounded-xl glass border border-white/10 flex items-center justify-center shadow-[0_8px_32px_-8px_rgba(34,211,238,0.3)] shrink-0">
+      {node.brand ? (
+        <FaWhatsapp
+          className="text-emerald-400"
+          style={{ width: ICON_SIZE.sm, height: ICON_SIZE.sm }}
+          aria-hidden
+        />
+      ) : (
+        <KaliIcon icon={node.icon} size="sm" className={ecosystemIconClass} />
+      )}
+    </div>
+  );
+}
+
 export default function EcosystemConnected() {
   const reduceMotion = useReducedMotion();
 
@@ -63,7 +90,7 @@ export default function EcosystemConnected() {
   return (
     <section
       id="ecosistema"
-      className="relative section-pad px-5 sm:px-6 overflow-hidden bg-[#030408] perf-defer-section"
+      className="relative section-pad px-5 sm:px-6 bg-[#030408] perf-defer-section"
     >
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(124,92,255,0.12),transparent_70%)]" />
@@ -86,12 +113,44 @@ export default function EcosystemConnected() {
           </h2>
         </m.div>
 
+        {/* Móvil — grid legible */}
+        <m.div
+          initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={VIEWPORT_ONCE}
+          transition={{ ...ENTER, delay: reduceMotion ? 0 : 0.04 }}
+          className="md:hidden"
+        >
+          <div className="rounded-2xl border border-kali-accent/25 bg-kali-accent/10 px-4 py-4 mb-4 flex items-center justify-center gap-3">
+            <div className="w-14 h-14 rounded-2xl glass-strong border border-kali-accent/40 flex items-center justify-center">
+              <span className="text-xl font-bold tracking-tight text-white">KALI</span>
+            </div>
+            <p className="text-sm text-white/60 text-left leading-snug">
+              Nueve capacidades conectadas en una sola plataforma.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
+            {NODES.map((node) => (
+              <div
+                key={node.label}
+                className="flex items-center gap-3 rounded-xl glass border border-white/[0.08] p-3 min-h-[64px]"
+              >
+                <NodeIcon node={node} />
+                <span className="text-[11px] sm:text-xs text-white/75 font-medium leading-snug">
+                  {node.shortLabel ?? node.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </m.div>
+
+        {/* Desktop — órbita */}
         <m.div
           initial={{ opacity: reduceMotion ? 1 : 0 }}
           whileInView={{ opacity: 1 }}
           viewport={VIEWPORT_ONCE}
           transition={{ ...ENTER, delay: reduceMotion ? 0 : 0.06 }}
-          className="relative mx-auto w-full max-w-[min(640px,100%)] aspect-square gpu-layer"
+          className="relative mx-auto hidden md:block w-full max-w-[min(640px,100%)] aspect-square gpu-layer"
         >
           <svg viewBox="0 0 600 600" className="w-full h-full" aria-hidden>
             <defs>
@@ -158,7 +217,7 @@ export default function EcosystemConnected() {
               PULSE_INDICES.map((index) => {
                 const node = positions[index];
                 return (
-                  <circle key={`pulse-${node.label}`} r="3" fill="#22d3ee" className="hidden md:block">
+                  <circle key={`pulse-${node.label}`} r="3" fill="#22d3ee">
                     <animate
                       attributeName="opacity"
                       values="0;1;0"
@@ -195,23 +254,9 @@ export default function EcosystemConnected() {
                   className="absolute z-10 -translate-x-1/2 -translate-y-1/2"
                   style={{ left: `${left}%`, top: `${top}%` }}
                 >
-                  <div className="flex flex-col items-center gap-1.5 sm:gap-2 max-w-[88px] sm:max-w-[110px]">
-                    <div className="group/eco w-10 h-10 sm:w-11 sm:h-11 rounded-xl glass border border-white/10 flex items-center justify-center shadow-[0_8px_32px_-8px_rgba(34,211,238,0.35)] hover:border-kali-cyan/40 transition-all duration-300">
-                      {node.brand ? (
-                        <FaWhatsapp
-                          className="text-emerald-400 transition-transform duration-300 group-hover/eco:scale-105"
-                          style={{ width: ICON_SIZE.sm, height: ICON_SIZE.sm }}
-                          aria-hidden
-                        />
-                      ) : (
-                        <KaliIcon
-                          icon={node.icon}
-                          size="sm"
-                          className={`${ecosystemIconClass} group-hover/eco:text-kali-cyan transition-transform duration-300 group-hover/eco:scale-105`}
-                        />
-                      )}
-                    </div>
-                    <span className="text-[9px] sm:text-[10px] text-white/65 font-medium text-center leading-tight">
+                  <div className="flex flex-col items-center gap-1.5 sm:gap-2 max-w-[110px]">
+                    <NodeIcon node={node} />
+                    <span className="text-[10px] sm:text-[11px] text-white/65 font-medium text-center leading-tight">
                       {node.label}
                     </span>
                   </div>

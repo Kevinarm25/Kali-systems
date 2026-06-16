@@ -24,7 +24,7 @@ const Pricing = dynamic(() => import("@/components/Pricing"), {
 
 export default function Home() {
   return (
-    <main className="relative">
+    <main className="relative has-fab-shell">
       <DeferredClientShell />
       <Navbar />
       <Hero />

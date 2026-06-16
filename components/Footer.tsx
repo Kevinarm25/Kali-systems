@@ -89,7 +89,7 @@ function FooterLink({
   external?: boolean;
 }) {
   const className =
-    "group text-sm text-white/55 hover:text-white transition-colors duration-300";
+    "group flex items-center min-h-[44px] py-2 text-sm text-white/55 hover:text-white active:text-white transition-colors duration-300 touch-target";
 
   if (external || href.startsWith("http") || href.startsWith("mailto:")) {
     return (
@@ -118,7 +118,7 @@ export default function Footer() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_100%,rgba(124,92,255,0.08),transparent_65%)] pointer-events-none" />
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-kali-accent/20 to-transparent pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-5 sm:px-6 pt-14 sm:pt-16 pb-8">
+      <div className="relative max-w-7xl mx-auto px-5 sm:px-6 pt-14 sm:pt-16 pb-[max(2rem,env(safe-area-inset-bottom))]">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 xl:gap-12">
           {/* Columna 1 — Marca */}
           <div className="sm:col-span-2 lg:col-span-1">
@@ -156,7 +156,7 @@ export default function Footer() {
                   variant={link.variant}
                   href={link.href}
                   label={link.label}
-                  size="sm"
+                  size="md"
                 />
               ))}
             </div>
@@ -220,7 +220,7 @@ export default function Footer() {
 
         <PaymentMethods />
 
-        <div className="pt-5 border-t border-white/[0.06] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div className="pt-5 border-t border-white/[0.06] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pr-16 sm:pr-0">
           <p className="text-xs text-white/40">
             © {new Date().getFullYear()} KALI Systems. Todos los derechos
             reservados.
@@ -229,13 +229,13 @@ export default function Footer() {
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
             <Link
               href="/privacidad"
-              className="text-xs text-white/45 hover:text-white/80 transition-colors duration-300"
+              className="inline-flex items-center min-h-[44px] text-xs text-white/45 hover:text-white/80 active:text-white transition-colors duration-300"
             >
               Aviso de privacidad
             </Link>
             <Link
               href="/terminos"
-              className="text-xs text-white/45 hover:text-white/80 transition-colors duration-300"
+              className="inline-flex items-center min-h-[44px] text-xs text-white/45 hover:text-white/80 active:text-white transition-colors duration-300"
             >
               Términos y condiciones
             </Link>

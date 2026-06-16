@@ -166,13 +166,15 @@ function PlanCard({ plan, index, reduceMotion }) {
       >
         {plan.theme.ambient && (
           <div
-            className="absolute inset-0 opacity-70 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+            className="absolute inset-0 opacity-60 sm:opacity-70 md:group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
             style={{ background: plan.theme.ambient }}
           />
         )}
         <div
           className={`absolute inset-0 pointer-events-none transition-opacity duration-500 ${
-            plan.exclusive ? "opacity-40 group-hover:opacity-70" : "opacity-0 group-hover:opacity-100"
+            plan.exclusive
+              ? "opacity-45 sm:opacity-40 md:group-hover:opacity-70"
+              : "opacity-0 md:group-hover:opacity-100"
           }`}
           style={{
             background: `radial-gradient(circle at top right, ${plan.theme.glow}, transparent 58%)`,
@@ -191,7 +193,7 @@ function PlanCard({ plan, index, reduceMotion }) {
         )}
 
         {plan.badge && (
-          <div className="absolute top-6 right-6 z-10">
+          <div className="absolute top-5 right-5 z-10 hidden sm:block">
             <div
               className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.2em] font-semibold text-white ${
                 plan.exclusive
@@ -209,15 +211,35 @@ function PlanCard({ plan, index, reduceMotion }) {
           </div>
         )}
 
-        <div className="relative p-8 md:p-9 flex flex-col h-full">
-          <h3
-            className={`text-2xl font-semibold tracking-[-0.02em] ${
-              plan.exclusive ? "text-gradient-accent" : ""
-            }`}
-            style={plan.exclusive ? undefined : { color: plan.theme.titleColor }}
-          >
-            {plan.name}
-          </h3>
+        <div className="relative p-6 sm:p-8 md:p-9 flex flex-col h-full">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <h3
+              className={`text-2xl font-semibold tracking-[-0.02em] ${
+                plan.exclusive ? "text-gradient-accent" : ""
+              }`}
+              style={plan.exclusive ? undefined : { color: plan.theme.titleColor }}
+            >
+              {plan.name}
+            </h3>
+            {plan.badge && (
+              <div className="sm:hidden shrink-0">
+                <div
+                  className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.2em] font-semibold text-white ${
+                    plan.exclusive
+                      ? "bg-gradient-to-r from-violet-500/20 via-kali-accent/20 to-cyan-500/20 border border-violet-400/30"
+                      : "bg-kali-accent/15 border border-kali-accent/25"
+                  }`}
+                >
+                  <Sparkle
+                    size={12}
+                    weight="fill"
+                    className={plan.exclusive ? "text-cyan-300" : "text-kali-accent"}
+                  />
+                  {plan.badge}
+                </div>
+              </div>
+            )}
+          </div>
 
           {plan.pricing?.custom ? (
             <p className="mt-3 text-base font-semibold text-gradient-accent">

@@ -15,7 +15,7 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="relative min-h-screen">
+    <main className="relative min-h-screen has-fab-shell">
       <DeferredClientShell />
       <Navbar />
       <div className="pt-24 sm:pt-28">
